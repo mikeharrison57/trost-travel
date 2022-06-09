@@ -11,22 +11,37 @@ header, article, section {
 
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: stretch;
 }
 
 .main--page {
   display: flex;
-  padding: 2rem;
+  justify-content: space-evenly;
+  align-items: stretch;
+  padding: 3rem;
 }
 
 .alltrips--section {
   display: flex;
   flex-direction: column;
-  padding-right: 10rem;
+  align-items: center;
+  padding: 5%;
 }
 
 .plantrip--section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 5%;
+}
+
+.toggle--trips {
+  display: flex;
+}
+
+.trip--form {
+  display: flex;
+  flex-direction: column;
+    align-items: center;
 }
