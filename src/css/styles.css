@@ -1,3 +1,47 @@
-body {
+ html {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  border: dashed;
+  border-width: .25rem;
+}
+
+header, article, section {
+  border: dashed;
+  border-width: .2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.main--page {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  padding: 3rem;
+}
+
+.alltrips--section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+}
+
+.plantrip--section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+}
+
+.toggle--trips {
+  display: flex;
+}
+
+.trip--form {
+  display: flex;
+  flex-direction: column;
+    align-items: center;
 }

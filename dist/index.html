@@ -4,13 +4,53 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Trost Travel</title>
 </head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+  <body>
+    <header class="header">
+      <article class="title--section">
+        <img class="icon" src=".images/trost-logo.png" alt="Trost Logo">
+        <h1>Trost Travel</h1>
+      </article>
+      <article class="welcome--section">
+        <h2>Welcome [user name]! Would you like to plan a trip today?</h2>
+        <h3>You've spent [trip cost] on trips this year!</h3>
+      </article>
+    </header>
+    <section class="main--page">
+      <section class="alltrips--section"
+        <article class="alltrips__heading">
+          <h2>All Trips</h2>
+        </article>
+        <article class="toggle--trips">
+          <button>Past Trips</button>
+          <button>Current Trips</button>
+          <button>Upcoming Trips</button>
+          <button>Pending Trips</button>
+        </article>
+        <article class="trip--info">
+          <h3>Trip Information</h3>
+        </article>
+      </section>
+      <section class="plantrip--section">
+        <article calls="plantrip--heading">
+          <h2>Plan Trip</h2>
+        </article>
+        <!-- <article class="tripform--section"> -->
+          <form class="trip--form">
+            <label for="date">Departure Date?</label>
+            <input type="text" name="date">
+            <label for="duration">How Many Days?</label>
+            <input type="text" name="duration">
+            <label for="traveler-number">How Many Travelers?</label>
+            <input type="text" name="traveler-number">
+            <label for="destination">Destination?</label>
+            <input type="text" name="destination">
+            <button type="submit">REVIEW TRIP</button>
+          </form>
+        <!-- </article> -->
+      </section>
+    </section>
+    <script src="bundle.js"></script>
+  </body>
 </html>
