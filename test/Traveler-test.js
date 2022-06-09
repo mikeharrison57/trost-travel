@@ -8,12 +8,18 @@ describe('Traveler', () => {
   let traveler2;
   let traveler3;
   beforeEach(() => {
-    traveler1 = new Traveler({ id: 1, name: 'Ham Leadbeater', travelerType: 'relaxer' });
-    traveler2 = new Traveler({ id: 3, name: 'Sibby Dawidowitsch', travelerType: 'shopper' });
-    traveler3 = new Traveler({ id: 5, name: 'Tiffy Grout', travelerType: 'thrill-seeker' });
+    traveler1 = new Traveler(travelers[0]);
+    traveler2 = new Traveler(travelers[2]);
+    traveler3 = new Traveler(travelers[4]);
   });
   it('should be a function.', () => {
     expect(Traveler).to.be.a('function');
+  });
+
+  it("should be an instance of Traveler", () => {
+    expect(traveler1).to.be.an.instanceof(Traveler);
+    expect(traveler2).to.be.an.instanceof(Traveler);
+    expect(traveler3).to.be.an.instanceof(Traveler);
   });
 
   it('should have a user id.', () => {
@@ -32,5 +38,11 @@ describe('Traveler', () => {
     expect(traveler1.travelerType).to.equal('relaxer');
     expect(traveler2.travelerType).to.equal('shopper');
     expect(traveler3.travelerType).to.equal('thrill-seeker');
+  });
+
+  it("should return a travler's id.", () => {
+    expect(traveler1.getTravelerId()).to.equal(1);
+    expect(traveler2.getTravelerId()).to.equal(3);
+    expect(traveler3.getTravelerId()).to.equal(5);
   });
 });
