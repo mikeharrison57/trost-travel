@@ -9,3 +9,24 @@ header, article, section {
   border-width: .2rem;
 }
 
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.main--page {
+  display: flex;
+  padding: 2rem;
+}
+
+.alltrips--section {
+  display: flex;
+  flex-direction: column;
+  padding-right: 10rem;
+}
+
+.plantrip--section {
+  display: flex;
+  flex-direction: column;
+}
