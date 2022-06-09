@@ -21,6 +21,3 @@
 - [ ] I have performed a self-review of my own code
 - [ ] My changes generate no new bugs
 
-**Giphy of how you feel submitting this PR:**
-
-[](Giphy link goes here)
