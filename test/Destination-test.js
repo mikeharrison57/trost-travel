@@ -17,4 +17,9 @@ describe('Destination', () => {
     expect(Destination).to.be.a('function');
   });
 
+  it('should be an instance of Traveler', () => {
+    expect(destination1).to.be.an.instanceof(Destination);
+    expect(destination2).to.be.an.instanceof(Destination);
+    expect(destination3).to.be.an.instanceof(Destination);
+  });
 });
