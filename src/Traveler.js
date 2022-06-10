@@ -1,12 +1,13 @@
-class Traveler {
-  constructor(travelerData) {
-    this.id = travelerData.id;
-    this.name = travelerData.name;
-    this.travelerType = travelerData.travelerType;
+class TravelerRepo {
+  constructor(travelerRepoData) {
+    this.travelers = travelerRepoData;
+    // this.id = travelerRepoData[0].id;
+    console.log(travelerRepoData)
+
   }
   getTravelerId() {
     return this.id;
   }
 };
 
-export { Traveler }
+export { TravelerRepo }

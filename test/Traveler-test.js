@@ -1,32 +1,26 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { Traveler } from '../src/Traveler';
+import { TravelerRepo } from '../src/Traveler';
 import { travelers } from '../src/data/Traveler-sample-data';
 
-describe('Traveler', () => {
-  let traveler1;
-  let traveler2;
-  let traveler3;
+describe('TravelerRepo', () => {
+  let travelerRepo
   beforeEach(() => {
-    traveler1 = new Traveler(travelers[0]);
-    traveler2 = new Traveler(travelers[2]);
-    traveler3 = new Traveler(travelers[4]);
+    travelerRepo = new TravelerRepo(travelers);
   });
   
-  it('should be a function.', () => {
-    expect(Traveler).to.be.a('function');
+  it.only('should be a function.', () => {
+    expect(TravelerRepo).to.be.a('function');
   });
 
-  it('should be an instance of Traveler', () => {
-    expect(traveler1).to.be.an.instanceof(Traveler);
-    expect(traveler2).to.be.an.instanceof(Traveler);
-    expect(traveler3).to.be.an.instanceof(Traveler);
+  it.only('should be an instance of Traveler', () => {
+    expect(travelerRepo).to.be.an.instanceof(TravelerRepo);
   });
 
-  it('should have a user id.', () => {
-    expect(traveler1.id).to.equal(1);
-    expect(traveler2.id).to.equal(3);
-    expect(traveler3.id).to.equal(5);
+  it.only('should have a user id.', () => {
+    expect(travelerRepo[0].id).to.equal(1);
+    expect(travelerRepo[2].id).to.equal(3);
+    expect(travelerRepo[4].id).to.equal(5);
   });
 
   it('should have a name.', () => {
