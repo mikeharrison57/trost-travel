@@ -9,6 +9,4 @@ class Traveler {
   }
 };
 
-
-
 export { Traveler }

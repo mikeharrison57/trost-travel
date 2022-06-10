@@ -12,6 +12,7 @@ describe('Traveler', () => {
     traveler2 = new Traveler(travelers[2]);
     traveler3 = new Traveler(travelers[4]);
   });
+  
   it('should be a function.', () => {
     expect(Traveler).to.be.a('function');
   });
