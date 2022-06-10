@@ -58,4 +58,11 @@ describe('Destination', () => {
     expect(destination2.alt).to.equal('opera house and city buildings on the water with boats');
     expect(destination3.alt).to.equal('city with clear skys and a road in the day time');
   });
+
+  it("should return a destinations's id.", () => {
+    expect(destination1.getDestinationId()).to.equal(1);
+    expect(destination2.getDestinationId()).to.equal(3);
+    expect(destination3.getDestinationId()).to.equal(5);
+  });
+  
 });

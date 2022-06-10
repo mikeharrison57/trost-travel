@@ -7,6 +7,9 @@ class Destination {
     this.image = destinationData.image;
     this.alt = destinationData.alt;
   } 
+  getDestinationId() {
+    return this.id;
+  }
 }
 
 export { Destination }
