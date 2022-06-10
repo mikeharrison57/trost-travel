@@ -12,11 +12,12 @@ describe('Traveler', () => {
     traveler2 = new Traveler(travelers[2]);
     traveler3 = new Traveler(travelers[4]);
   });
+  
   it('should be a function.', () => {
     expect(Traveler).to.be.a('function');
   });
 
-  it("should be an instance of Traveler", () => {
+  it('should be an instance of Traveler', () => {
     expect(traveler1).to.be.an.instanceof(Traveler);
     expect(traveler2).to.be.an.instanceof(Traveler);
     expect(traveler3).to.be.an.instanceof(Traveler);
