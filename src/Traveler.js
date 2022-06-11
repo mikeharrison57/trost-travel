@@ -1,12 +1,17 @@
 class TravelerRepo {
   constructor(travelerRepoData) {
     this.travelers = travelerRepoData;
-    // this.id = travelerRepoData[0].id;
-    console.log(travelerRepoData)
-
+    // console.log(travelerRepoData)
   }
-  getTravelerId() {
-    return this.id;
+
+  getTravelerById(id) {
+    const foundTraveler = this.travelers.find(traveler => traveler.id === id);
+    return foundTraveler;
+  }
+  
+  returnTravelerFirstName(id) {
+    const travelerName = this.getTravelerById(id).name.split(' ');
+    return travelerName[0];
   }
 };
 

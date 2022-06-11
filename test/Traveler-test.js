@@ -4,40 +4,52 @@ import { TravelerRepo } from '../src/Traveler';
 import { travelers } from '../src/data/Traveler-sample-data';
 
 describe('TravelerRepo', () => {
-  let travelerRepo
+  let travelerRepo1
+  let travelerRepo2
   beforeEach(() => {
-    travelerRepo = new TravelerRepo(travelers);
+    travelerRepo1 = new TravelerRepo([travelers[0], travelers[1], travelers[2]]);
+    travelerRepo2 = new TravelerRepo([travelers[3], travelers[4]]);
   });
-  
-  it.only('should be a function.', () => {
+
+  it('should be a function.', () => {
     expect(TravelerRepo).to.be.a('function');
   });
 
-  it.only('should be an instance of Traveler', () => {
-    expect(travelerRepo).to.be.an.instanceof(TravelerRepo);
+  it('should be an instance of TravelerRepo', () => {
+    expect(travelerRepo1).to.be.an.instanceof(TravelerRepo);
+    expect(travelerRepo2).to.be.an.instanceof(TravelerRepo);
   });
 
-  it.only('should have a user id.', () => {
-    expect(travelerRepo[0].id).to.equal(1);
-    expect(travelerRepo[2].id).to.equal(3);
-    expect(travelerRepo[4].id).to.equal(5);
+  it('should have a certain amount of travelers in the repo.', () => {
+    expect(travelerRepo1.travelers.length).to.equal(3);
+    expect(travelerRepo2.travelers.length).to.equal(2);
   });
 
-  it('should have a name.', () => {
-    expect(traveler1.name).to.equal('Ham Leadbeater');
-    expect(traveler2.name).to.equal('Sibby Dawidowitsch');
-    expect(traveler3.name).to.equal('Tiffy Grout');
+  it('should have a traveler with an id of 1 at index postion 0.', () => {
+    expect(travelerRepo1.travelers[0].id).to.equal(1);
   });
 
-  it('should have a traveler type.', () => {
-    expect(traveler1.travelerType).to.equal('relaxer');
-    expect(traveler2.travelerType).to.equal('shopper');
-    expect(traveler3.travelerType).to.equal('thrill-seeker');
+  it('should have a traveler with an id of 5 at index postion 1.', () => {
+    expect(travelerRepo2.travelers[1].id).to.equal(5);
   });
 
-  it("should return a travler's id.", () => {
-    expect(traveler1.getTravelerId()).to.equal(1);
-    expect(traveler2.getTravelerId()).to.equal(3);
-    expect(traveler3.getTravelerId()).to.equal(5);
+  it('should be able to return a travler by their id.', () => {
+    expect(travelerRepo1.getTravelerById(2)).to.deep.equal(
+      {
+        id: 2, 
+        name: "Rachael Vaughten",
+        travelerType: "thrill-seeker"
+      });
+    expect(travelerRepo2.getTravelerById(4)).to.deep.equal(
+      {
+        id: 4,
+        name: "Leila Thebeaud",
+        travelerType: "photographer"
+      });
+  });
+
+  it("should be able to return a travler's first name.", () => {
+    expect(travelerRepo1.returnTravelerFirstName(3)).to.equal('Sibby');
+    expect(travelerRepo2.returnTravelerFirstName(5)).to.equal('Tiffy');
   });
 });

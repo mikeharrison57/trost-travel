@@ -23,11 +23,11 @@ describe('Trip', () => {
     expect(trip3).to.be.an.instanceof(Trip);
   });
 
-  it('should have an id.', () => {
-    expect(trip1.id).to.equal(1);
-    expect(trip2.id).to.equal(2);
-    expect(trip3.id).to.equal(40);
-  });
+  // it('should have an id.', () => {
+  //   expect(trip1.id).to.equal(1);
+  //   expect(trip2.id).to.equal(2);
+  //   expect(trip3.id).to.equal(40);
+  // });
 
 
 });
