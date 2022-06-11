@@ -101,9 +101,30 @@ describe('TripRepo', () => {
     ]);
   });
 
-  it.skip('should be able to return trips from the past.', () => {
-    expect(tripRepo1.getPastTrips()).to.deep.equal();
-    expect(tripRepo2.getPastTrips()).to.deep.equal();
+  it('should be able to return trips from the past.', () => {
+    expect(tripRepo1.getPastTrips()).to.deep.equal([]);
+    expect(tripRepo2.getPastTrips()).to.deep.equal([
+      {
+        id: 53,
+        userID: 27,
+        destinationID: 4,
+        travelers: 6,
+        date: '2020-01-03',
+        duration: 20,
+        status: 'approved',
+        suggestedActivities: []
+      },
+      {
+        id: 92,
+        userID: 30,
+        destinationID: 4,
+        travelers: 2,
+        date: '2020-12-24',
+        duration: 16,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ]);
   });
 
 

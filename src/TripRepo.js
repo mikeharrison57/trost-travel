@@ -3,10 +3,10 @@ const dayjs = require('dayjs');
 class TripRepo {
   constructor(tripRepoData) {
     this.trips = tripRepoData;
-    this.dates = tripRepoData.map(trip => trip.date);
     this.pastTrips = [];
     this.presentTrips = [];
     this.futureTrips = [];
+    this.pendingTrips = [];
   }
 
   convertTripDates() {
@@ -17,14 +17,29 @@ class TripRepo {
       trip.date = slicedConDates;
       newDateFormatTrips.push(trip)
     });
-    console.log(newDateFormatTrips)
     return newDateFormatTrips
   };
 
   getPastTrips() {
-   
-
+    let today = dayjs().format('YYYY-MM-DD');
+    let filteredPastTrips = this.convertTripDates().filter(trip => trip.date < today);
+    this.pastTrips = filteredPastTrips
+    console.log(this.pastTrips)
+    return this.pastTrips;
   }
+
+  // organizeTrips() {
+  //   let today = dayjs().format('YYYY-MM-DD');
+  //   this.convertTripDates().forEach((trip) => {
+  //     if (trip.date < today) {
+  //       return this.pastTrips.push(trip);
+  //     } else if (trip.date === today) {
+  //       return this.presentTrips.push(trip);
+  //     } else if (trip.date > today) {
+  //       return this.futureTrips.push(trip);
+  //     }
+  //   })
+  // }
 }
 
 export { TripRepo }
