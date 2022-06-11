@@ -1,7 +1,6 @@
 class TravelerRepo {
   constructor(travelerRepoData) {
     this.travelers = travelerRepoData;
-    // console.log(travelerRepoData)
   }
 
   getTravelerById(id) {
