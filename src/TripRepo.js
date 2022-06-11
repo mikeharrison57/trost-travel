@@ -1,26 +1,25 @@
-// import { Destination } from '../src/Destination';
-
 class TripRepo {
   constructor(tripRepoData) {
     this.trips = tripRepoData;
+    this.dates = tripRepoData.map(trip => trip.date);
   }
 
-  convertTripDate() {
-    
+  convertTripDates() {
+    let convertedTripDates = [ ]
+    this.dates.forEach((date) => {
+      let convertedDates = new Date(date).getTime();
+      convertedTripDates.push(convertedDates);
+    });
+    return convertedTripDates;
+  };
+
+  getPastTrips() {
+    console.log(this.convertTripDates())
+    const pastTrip = this.trips.filter((trip) => {
+
+    })
   }
 }
 
-// class DestinationRepo {
-//   constructor(destinationData) {
-//     this.destinations = destinationData;
-//   } 
-  
-//   getDestinationById(id) {
-//     const foundDestination = this.destinations.find(destination => destination.id === id);
-//     return foundDestination;
-//   }
-// }
-
 export { TripRepo }
 
-// Date.now().toString();

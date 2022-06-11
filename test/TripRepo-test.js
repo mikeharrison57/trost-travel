@@ -34,4 +34,15 @@ describe('TripRepo', () => {
     expect(tripRepo2.trips[1].id).to.equal(53);
   });
 
+  it('should be able to convert the format of trip dates in the repo.', () => {
+    expect(tripRepo1.convertTripDates()).to.deep.equal([ 1666504800000, 1671692400000, 1654840800000 ]);
+    expect(tripRepo2.convertTripDates()).to.deep.equal([ 1654840800000, 1578034800000, 1608793200000 ]);
+  });
+
+  // it.skip('should be able to return trips from the past.', () => {
+  //   expect(tripRepo1.convertTripDates()).to.deep.equal();
+  //   expect(tripRepo2.convertTripDates()).to.deep.equal();
+  // });
+
+
 });
