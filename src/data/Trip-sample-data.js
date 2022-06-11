@@ -1,3 +1,5 @@
+const dayjs = require('dayjs');
+
 const trips = [
   {
     id: 35,
@@ -24,7 +26,7 @@ const trips = [
     userID: 3,
     destinationID: 3,
     travelers: 3,
-    date: "2022/06/10",
+    date: dayjs().format('YYYY-MM-DD'),
     duration: 8,
     status: "approved",
     suggestedActivities: [ ]
@@ -34,7 +36,7 @@ const trips = [
     userID: 46,
     destinationID: 3,
     travelers: 6,
-    date: "2022/06/10",
+    date: dayjs().format('YYYY-MM-DD'),
     duration: 16,
     status: "approved",
     suggestedActivities: [ ]
