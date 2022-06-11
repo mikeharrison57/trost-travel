@@ -1,20 +1,18 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { Trip } from '../src/Trip';
+import { TripRepo } from '../src/TripRepo';
 import { trips } from '../src/data/Trip-sample-data';
 
-describe('Trip', () => {
-  let trip1;
-  let trip2;
-  let trip3;
+describe('TravelerRepo', () => {
+  let tripRepo1
+  let tripRepo2
   beforeEach(() => {
-    trip1 = new Trip(trips[0]);
-    trip2 = new Trip(trips[3]);
-    trip3 = new Trip(trips[5]);
+    tripRepo1 = new TripRepo([trips[0], trips[1], trips[2]]);
+    tripRepo2 = new TripRepo([trips[3], trips[4]], trips[5]);
   });
-  
+
   it('should be a function.', () => {
-    expect(Trip).to.be.a('function');
+    expect(TripRepo).to.be.a('function');
   });
 
   it('should be an instance of trip', () => {
