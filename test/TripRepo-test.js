@@ -101,8 +101,8 @@ describe('TripRepo', () => {
     ]);
   });
 
-  it('should be able to return trips from the past.', () => {
-    expect(tripRepo1.getPastTrips()).to.deep.equal([]);
+  it('should be able to get trips from the past.', () => {
+    expect(tripRepo1.getPastTrips()).to.deep.equal([ ]);
     expect(tripRepo2.getPastTrips()).to.deep.equal([
       {
         id: 53,
@@ -127,5 +127,31 @@ describe('TripRepo', () => {
     ]);
   });
 
+  it('should be able to get trips from the present.', () => {
+    expect(tripRepo1.getPresentTrips()).to.deep.equal([
+      {
+        id: 102,
+        userID: 3,
+        destinationID: 3,
+        travelers: 3,
+        date: '2022-06-11',
+        duration: 8,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ]);
+    expect(tripRepo2.getPresentTrips()).to.deep.equal([
+      {
+        id: 124,
+        userID: 46,
+        destinationID: 3,
+        travelers: 6,
+        date: '2022-06-11',
+        duration: 16,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ]);
+  });
 
 });
