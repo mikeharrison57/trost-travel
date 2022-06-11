@@ -34,6 +34,14 @@ class TripRepo {
     return this.presentTrips;
   }
 
+  getFutureTrips() {
+    let today = dayjs().format('YYYY-MM-DD');
+    let filteredFutureTrips = this.convertTripDates().filter(trip => trip.date > today);
+    this.futureTrips = filteredFutureTrips;
+    console.log(this.futureTrips)
+    return this.futureTrips;
+  }
+
   // organizeTrips() {
   //   let today = dayjs().format('YYYY-MM-DD');
   //   this.convertTripDates().forEach((trip) => {

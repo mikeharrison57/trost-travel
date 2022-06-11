@@ -154,4 +154,30 @@ describe('TripRepo', () => {
     ]);
   });
 
+  it('should be able to get trips from the future.', () => {
+    expect(tripRepo1.getFutureTrips()).to.deep.equal([ 
+      {
+        id: 35,
+        userID: 36,
+        destinationID: 1,
+        travelers: 3,
+        date: '2022-10-23',
+        duration: 16,
+        status: 'pending',
+        suggestedActivities: []
+      },
+      {
+        id: 125,
+        userID: 19,
+        destinationID: 2,
+        travelers: 4,
+        date: '2022-12-22',
+        duration: 15,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ]);
+    expect(tripRepo2.getFutureTrips()).to.deep.equal([ ]);
+  });
+  
 });
