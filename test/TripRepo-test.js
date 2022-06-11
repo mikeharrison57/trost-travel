@@ -4,12 +4,11 @@ import { TripRepo } from '../src/TripRepo';
 import { trips } from '../src/data/Trip-sample-data';
 
 describe('TripRepo', () => {
-  let tripRepo1
-  let tripRepo2
+  let tripRepo1;
+  let tripRepo2;
   beforeEach(() => {
     tripRepo1 = new TripRepo([trips[0], trips[1], trips[2]]);
     tripRepo2 = new TripRepo([trips[3], trips[4], trips[5]]);
-
   });
 
   it('should be a function.', () => {
@@ -75,7 +74,7 @@ describe('TripRepo', () => {
         travelers: 6,
         date: '2022-06-11',
         duration: 16,
-        status: 'approved',
+        status: 'pending',
         suggestedActivities: []
       },
       {
@@ -148,7 +147,7 @@ describe('TripRepo', () => {
         travelers: 6,
         date: '2022-06-11',
         duration: 16,
-        status: 'approved',
+        status: 'pending',
         suggestedActivities: []
       }
     ]);
@@ -179,5 +178,37 @@ describe('TripRepo', () => {
     ]);
     expect(tripRepo2.getFutureTrips()).to.deep.equal([ ]);
   });
-  
+
+  it('should be able to get pending trips', () => {
+    expect(tripRepo1.getPendingTrips()).to.deep.equal([
+      {
+        id: 35,
+        userID: 36,
+        destinationID: 1,
+        travelers: 3,
+        date: '2022-10-23',
+        duration: 16,
+        status: 'pending',
+        suggestedActivities: []
+      }
+    ]);
+    expect(tripRepo2.getPendingTrips()).to.deep.equal([
+      {
+        id: 124,
+        userID: 46,
+        destinationID: 3,
+        travelers: 6,
+        date: '2022-06-11',
+        duration: 16,
+        status: 'pending',
+        suggestedActivities: []
+      }
+    ]);
+  });
+
+  // it('should be able to calculate the cost of trips', () => {
+  //   expect(tripRepo1).to.equal();
+  //   expect(tripRepo2).to.equal();
+  // });
+
 });

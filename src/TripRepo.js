@@ -1,14 +1,23 @@
+import { DestinationRepo } from '../src/DestinationRepo';
+import { destinations } from '../src/data/Destination-sample-data';
 const dayjs = require('dayjs');
 
 class TripRepo {
-  constructor(tripRepoData) {
+  constructor(tripRepoData, destinationRepoData) {
     this.trips = tripRepoData;
     this.pastTrips = [];
     this.presentTrips = [];
     this.futureTrips = [];
     this.pendingTrips = [];
+    this.destinations = new DestinationRepo([
+      destinations[0], 
+      destinations[1], 
+      destinations[2],
+      destinations[3], 
+      destinations[4]
+    ]);
+    // console.log(this.destinations);
   }
-
   convertTripDates() {
     let newDateFormatTrips = []
     this.trips.forEach((trip) => {
@@ -38,22 +47,22 @@ class TripRepo {
     let today = dayjs().format('YYYY-MM-DD');
     let filteredFutureTrips = this.convertTripDates().filter(trip => trip.date > today);
     this.futureTrips = filteredFutureTrips;
-    console.log(this.futureTrips)
     return this.futureTrips;
   }
 
-  // organizeTrips() {
-  //   let today = dayjs().format('YYYY-MM-DD');
-  //   this.convertTripDates().forEach((trip) => {
-  //     if (trip.date < today) {
-  //       return this.pastTrips.push(trip);
-  //     } else if (trip.date === today) {
-  //       return this.presentTrips.push(trip);
-  //     } else if (trip.date > today) {
-  //       return this.futureTrips.push(trip);
-  //     }
-  //   })
+
+  getPendingTrips() {
+    let filteredPendingTrips = this.convertTripDates().filter(trip => trip.status === 'pending');
+    this.pendingTrips = filteredPendingTrips;
+    console.log(this.pendingTrips)
+    return this.pendingTrips;
+  }
+
+  // calculateTripCost() {
+
   // }
+
+  
 }
 
 export { TripRepo }

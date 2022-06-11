@@ -38,7 +38,7 @@ const trips = [
     travelers: 6,
     date: dayjs().format('YYYY-MM-DD'),
     duration: 16,
-    status: "approved",
+    status: "pending",
     suggestedActivities: [ ]
   },
   {
