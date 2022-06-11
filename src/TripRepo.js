@@ -1,8 +1,12 @@
 // import { Destination } from '../src/Destination';
 
 class TripRepo {
-  constructor(tripData) {
-    this.id = tripData.id;
+  constructor(tripRepoData) {
+    this.trips = tripRepoData;
+  }
+
+  convertTripDate() {
+    
   }
 }
 

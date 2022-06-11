@@ -4,9 +4,9 @@ const trips = [
     userID: 36,
     destinationID: 1,
     travelers: 3,
-    date: "2020/10/23",
+    date: "2022/10/23",
     duration: 16,
-    status: "approved",
+    status: "pending",
     suggestedActivities: [ ]
   },
   {
@@ -14,7 +14,7 @@ const trips = [
     userID: 19,
     destinationID: 2,
     travelers: 4,
-    date: "2019/12/22",
+    date: "2022/12/22",
     duration: 15,
     status: "approved",
     suggestedActivities: [ ]
@@ -24,7 +24,7 @@ const trips = [
     userID: 3,
     destinationID: 3,
     travelers: 3,
-    date: "2020/09/26",
+    date: "2022/06/10",
     duration: 8,
     status: "approved",
     suggestedActivities: [ ]
@@ -34,7 +34,7 @@ const trips = [
     userID: 46,
     destinationID: 3,
     travelers: 6,
-    date: "2019/10/07",
+    date: "2022/06/10",
     duration: 16,
     status: "approved",
     suggestedActivities: [ ]
