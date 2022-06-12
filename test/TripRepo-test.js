@@ -206,9 +206,11 @@ describe('TripRepo', () => {
     ]);
   });
 
-  // it('should be able to calculate the cost of trips', () => {
-  //   expect(tripRepo1).to.equal();
-  //   expect(tripRepo2).to.equal();
-  // });
-
+  it('should be able to calculate the cost of trips', () => {
+    expect(tripRepo1.calculateTripCost(1)).to.equal(2552);
+    expect(tripRepo1.calculateTripCost(2)).to.equal(5082);
+    expect(tripRepo1.calculateTripCost(3)).to.equal(4279);
+    expect(tripRepo2.calculateTripCost(4)).to.equal(3740);
+    
+  });
 });

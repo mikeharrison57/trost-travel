@@ -3,7 +3,7 @@ import { destinations } from '../src/data/Destination-sample-data';
 const dayjs = require('dayjs');
 
 class TripRepo {
-  constructor(tripRepoData, destinationRepoData) {
+  constructor(tripRepoData) {
     this.trips = tripRepoData;
     this.pastTrips = [];
     this.presentTrips = [];
@@ -16,19 +16,19 @@ class TripRepo {
       destinations[3], 
       destinations[4]
     ]);
-    // console.log(this.destinations);
   }
+
   convertTripDates() {
     let newDateFormatTrips = []
     this.trips.forEach((trip) => {
-      let convertedDates = dayjs(trip.date).format();
-      let slicedConDates = convertedDates.slice(0, 10);
-      trip.date = slicedConDates;
+      let splitDates = trip.date.split('/');
+      let joinedDates = splitDates.join('-');
+      trip.date = joinedDates;
       newDateFormatTrips.push(trip)
     });
     return newDateFormatTrips
   };
-
+  
   getPastTrips() {
     let today = dayjs().format('YYYY-MM-DD');
     let filteredPastTrips = this.convertTripDates().filter(trip => trip.date < today);
@@ -50,19 +50,22 @@ class TripRepo {
     return this.futureTrips;
   }
 
-
   getPendingTrips() {
     let filteredPendingTrips = this.convertTripDates().filter(trip => trip.status === 'pending');
     this.pendingTrips = filteredPendingTrips;
-    console.log(this.pendingTrips)
     return this.pendingTrips;
   }
 
-  // calculateTripCost() {
-
-  // }
-
-  
+  calculateTripCost(id) {
+    const foundDestination = this.destinations.getDestinationById(id);
+    const foundTrip = this.trips.find(trip => trip.destinationID === id)
+    let lodegingCosts = foundTrip.duration * foundDestination.estimatedLodgingCostPerDay;
+    let flightCosts = foundTrip.travelers * foundDestination.estimatedFlightCostPerPerson;
+    let baseTripCost = flightCosts += lodegingCosts;
+    let travelAgentFee = baseTripCost * .10;
+    let totalTripCost = baseTripCost += travelAgentFee;
+    return totalTripCost;
+  }
 }
 
 export { TripRepo }
