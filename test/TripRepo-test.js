@@ -2,6 +2,7 @@ import chai from 'chai';
 const expect = chai.expect;
 import { TripRepo } from '../src/TripRepo';
 import { trips } from '../src/data/Trip-sample-data';
+const dayjs = require('dayjs');
 
 describe('TripRepo', () => {
   let tripRepo1;
@@ -60,7 +61,7 @@ describe('TripRepo', () => {
         userID: 3,
         destinationID: 3,
         travelers: 3,
-        date: '2022-06-11',
+        date: dayjs().format('YYYY-MM-DD'),
         duration: 8,
         status: 'approved',
         suggestedActivities: []
@@ -72,7 +73,7 @@ describe('TripRepo', () => {
         userID: 46,
         destinationID: 3,
         travelers: 6,
-        date: '2022-06-11',
+        date: dayjs().format('YYYY-MM-DD'),
         duration: 16,
         status: 'pending',
         suggestedActivities: []
@@ -133,7 +134,7 @@ describe('TripRepo', () => {
         userID: 3,
         destinationID: 3,
         travelers: 3,
-        date: '2022-06-11',
+        date: dayjs().format('YYYY-MM-DD'),
         duration: 8,
         status: 'approved',
         suggestedActivities: []
@@ -145,7 +146,7 @@ describe('TripRepo', () => {
         userID: 46,
         destinationID: 3,
         travelers: 6,
-        date: '2022-06-11',
+        date: dayjs().format('YYYY-MM-DD'),
         duration: 16,
         status: 'pending',
         suggestedActivities: []
@@ -198,7 +199,7 @@ describe('TripRepo', () => {
         userID: 46,
         destinationID: 3,
         travelers: 6,
-        date: '2022-06-11',
+        date: dayjs().format('YYYY-MM-DD'),
         duration: 16,
         status: 'pending',
         suggestedActivities: []

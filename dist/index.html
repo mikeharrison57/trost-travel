@@ -23,20 +23,19 @@
           <h2>All Trips</h2>
         </article>
         <article class="toggle--trips">
-          <button>Past Trips</button>
-          <button>Current Trips</button>
-          <button>Upcoming Trips</button>
+          <button id="tripButton">Past Trips</button>
+          <button id="tripButton">Current Trips</button>
+          <button id="tripButton">Upcoming Trips</button>
           <button>Pending Trips</button>
         </article>
         <article class="trip--info">
-          <h3>Trip Information</h3>
+          <h3 id="tripInfo">Trip Information</h3>
         </article>
       </section>
       <section class="plantrip--section">
         <article calls="plantrip--heading">
           <h2>Plan Trip</h2>
         </article>
-        <!-- <article class="tripform--section"> -->
           <form class="trip--form">
             <label for="date">Departure Date?</label>
             <input type="text" name="date">
@@ -48,7 +47,6 @@
             <input type="text" name="destination">
             <button type="submit">REVIEW TRIP</button>
           </form>
-        <!-- </article> -->
       </section>
     </section>
     <script src="bundle.js"></script>

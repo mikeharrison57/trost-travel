@@ -7,11 +7,11 @@ import { requestApiData } from './api-calls.js';
 import { TripRepo } from '../src/TripRepo';
 import { TravelerRepo } from '../src/TravelerRepo';
 import { DestinationRepo } from '../src/DestinationRepo'
-
-
 const dayjs = require('dayjs');
 
 // Query Selectors
+const tripInfo = document.querySelector('#trip-info');
+const 
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo; 
@@ -46,9 +46,11 @@ const instantiateClasses = (data, travelerId) => {
   tripRepo = new TripRepo(tripData);
   travelerRepo = new TravelerRepo(travelerData);
   destinationRepo = new DestinationRepo(destinationData);
-  console.log(destinationRepo)
 }
-retrieveApiData()
+
+// const renderPageData = () => {
+
+// }
 
 // Event Listeners 
 window.addEventListener("load", retrieveApiData("load"))
