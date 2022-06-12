@@ -15,10 +15,10 @@ const tripInfo = document.querySelector('#tripInfo');
 const tripInfoButtons = document.querySelectorAll('#tripButton');
 
 // Class Instances
-let tripRepo, travelerRepo, destinationRepo; 
+let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
 
 // Global Variables
-let travelerData, destinationData, tripData;
+let travelerData, destinationData, tripData, travelerId;
 
 // Functions
 const getRandomTraveler = repo => {
@@ -45,12 +45,22 @@ const instantiateClasses = (data) => {
 
 const renderPageData = () => {
   welcomeTraveler()
+  sortTravelerTrips()
 }
 
 const welcomeTraveler = () => {
-  const travelerId = getRandomTraveler(travelerRepo.travelers)
-  console.log(travelerRepo.returnTravelerFirstName(travelerId))
+  travelerId = getRandomTraveler(travelerRepo.travelers)
+  // console.log(travelerRepo.returnTravelerFirstName(travelerId))
   travelerGreeting.innerHTML = `Welcome ${travelerRepo.returnTravelerFirstName(travelerId)}! Would you like to plan a trip today?`
+}
+
+const sortTravelerTrips = () => {
+  let travelerTrips = tripRepo.trips.filter(trip => trip.userID === travelerId);
+  travelerTripRepo = new TripRepo(travelerTrips);
+  travelerTripRepo.getPastTrips()
+  travelerTripRepo.getPresentTrips();
+  travelerTripRepo.getFutureTrips();
+  travelerTripRepo.getPendingTrips();
 }
 
 // Event Listeners 

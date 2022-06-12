@@ -56,6 +56,14 @@ class TripRepo {
     return this.pendingTrips;
   }
 
+  // sortTrips() {
+  //   getPastTrips();
+  //   getPresentTrips();
+  //   getFutureTrips();
+  //   getPendingTrips();
+  //   return 
+  // }
+
   calculateTripCost(id) {
     const foundDestination = this.destinations.getDestinationById(id);
     const foundTrip = this.trips.find(trip => trip.destinationID === id)
