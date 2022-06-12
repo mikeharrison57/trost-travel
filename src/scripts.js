@@ -44,8 +44,9 @@ const instantiateClasses = (data) => {
 }
 
 const renderPageData = () => {
-  welcomeTraveler()
-  sortTravelerTrips()
+  welcomeTraveler();
+  sortTravelerTrips();
+  displayPastTrips();
 }
 
 const welcomeTraveler = () => {
@@ -63,5 +64,24 @@ const sortTravelerTrips = () => {
   travelerTripRepo.getPendingTrips();
 }
 
+const createPastTripObjects = () => {
+  sortTravelerTrips();
+  let foundDestination;
+  const pastTripInfo = travelerTripRepo.pastTrips.map((trip) => {
+   foundDestination = destinationRepo.getDestinationById(trip.destinationID);
+    return {
+      date: trip.date,
+      duration: trip.duration,
+      destination: foundDestination.destination,
+      image: foundDestination.image,
+      alt: foundDestination.alt
+    }
+  })
+  return pastTripInfo
+}
+
+// displayPastTrips
+
 // Event Listeners 
 window.addEventListener("load", retrieveApiData("load"));
+tripInfoButtons[0].addEventListener('click', displayPastTrips)
