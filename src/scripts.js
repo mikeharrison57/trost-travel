@@ -70,7 +70,7 @@ const createPastTripObjects = () => {
   const pastTripInfo = travelerTripRepo.pastTrips.map((trip) => {
    foundDestination = destinationRepo.getDestinationById(trip.destinationID);
     return {
-      date: trip.date,
+      startDate: dayjs(trip.date).toString().slice(0, 16),
       duration: trip.duration,
       destination: foundDestination.destination,
       image: foundDestination.image,
@@ -80,8 +80,52 @@ const createPastTripObjects = () => {
   return pastTripInfo
 }
 
-// displayPastTrips
+const displayPastTrips = () => {
+  const pastTrips = createPastTripObjects().forEach((trip) => {
+    tripInfo.innerHTML += 
+  `<div class="box-images">
+    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+  </div>
+  <div class="box-name">
+    <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
+    <p class="date">Start Date: ${trip.startDate}</p>
+  </div>
+  <div class="box-footer">
+    <div>
+      <h3 class="attachment-number" id="number">${trip.duration} Days</h3>
+    </div>
+  </div>` 
+  })
+  return pastTrips
+}
 
 // Event Listeners 
 window.addEventListener("load", retrieveApiData("load"));
 tripInfoButtons[0].addEventListener('click', displayPastTrips)
+
+
+/* <article class="mini-box">
+  <div class="box-images">
+    <img class="poster" src="./assets/scifi-poster.avif"  alt="Space-movie">
+    <img class="share" src="./assets/individual-share.png" alt="Individual-Share">
+    <label class="views">Views</label>
+    <h1 class="view-count" id="number">04</h1>
+  </div>
+  <div class="box-name">
+    <h4 class="recipeint-name">Name Here</h4>
+    <label class="date">Sunday 05/29/22 11:10AM</label>
+  </div>
+  <div class="box-link">
+    <label class="link">http://www.example. com/movie</lable>
+  </div>
+  <div class="box-footer">
+    <div>
+      <label class="playlist">Playlist</label>
+      <h4 class="playlist-name">Name of Playlist</h4>
+    </div>
+    <div>
+      <p class="attachments">Attachements</p>
+      <h3 class="attachment-number" id="number">04</h3>
+    </div>
+  </div>
+</article> */
