@@ -10,8 +10,9 @@ import { DestinationRepo } from '../src/DestinationRepo'
 const dayjs = require('dayjs');
 
 // Query Selectors
-const tripInfo = document.querySelector('#trip-info');
-const 
+const travelerGreeting = document.querySelector('#travelerGreeting');
+const tripInfo = document.querySelector('#tripInfo');
+const tripInfoButtons = document.querySelectorAll('#tripButton');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo; 
@@ -19,38 +20,38 @@ let tripRepo, travelerRepo, destinationRepo;
 // Global Variables
 let travelerData, destinationData, tripData;
 
-
 // Functions
 const getRandomTraveler = repo => {
   return Math.floor(Math.random() * repo.length + 1);
 };
 
-const retrieveApiData = (travelerId) => {
+const retrieveApiData = () => {
   Promise.all([
     requestApiData('trips'),
     requestApiData('travelers'),
     requestApiData('destinations')
-  ]).then(data => instantiateClasses(data, travelerId));
+  ]).then(data => instantiateClasses(data));
 };
 
-const instantiateClasses = (data, travelerId) => {
+const instantiateClasses = (data) => {
   tripData = data[0].trips;
   travelerData = data[1].travelers;
   destinationData = data[2].destinations;
-  let id;
-  if (travelerId === 'load') {
-    id = getRandomTraveler(travelerData)
-  } else {
-    id = travelerId
-  }
   tripRepo = new TripRepo(tripData);
   travelerRepo = new TravelerRepo(travelerData);
   destinationRepo = new DestinationRepo(destinationData);
+  renderPageData()
 }
 
-// const renderPageData = () => {
+const renderPageData = () => {
+  welcomeTraveler()
+}
 
-// }
+const welcomeTraveler = () => {
+  const travelerId = getRandomTraveler(travelerRepo.travelers)
+  console.log(travelerRepo.returnTravelerFirstName(travelerId))
+  travelerGreeting.innerHTML = `Welcome ${travelerRepo.returnTravelerFirstName(travelerId)}! Would you like to plan a trip today?`
+}
 
 // Event Listeners 
-window.addEventListener("load", retrieveApiData("load"))
+window.addEventListener("load", retrieveApiData("load"));
