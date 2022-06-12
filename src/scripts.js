@@ -3,15 +3,28 @@
 
 // Imports
 import './css/styles.css';
-import {requestApiData, requestData} from './api-calls.js';
+import {requestApiData} from './api-calls.js';
 
 // Query Selectors
 
 // Class Instances
+let travelerRepo, destinationRepo, tripRepo;
 
 // Global Variables
 
 
 // Functions
 
-requestData()
+// const retrieveApiData = () => {
+//   Promise.all([
+//     requestApiData('trips'),
+//     requestApiData('travelers'),
+//     requestApiData('destinations')
+//   ]).then(data => instantiateClasses(data));
+// }
+
+// const instantiateClasses = data => {
+//   tripRepo = data[0].trips;
+//   console.log(tripRepo)
+// }
+// retrieveApiData()
