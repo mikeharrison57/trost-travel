@@ -36,9 +36,10 @@ header {
   padding: 5%;
 }
 
-/* .trip--info {
-  overflow-y: auto;
-} */
+.trip--info {
+  overflow-y: scroll;
+  display: flex;
+}
 
 .poster {
   width: 15rem;

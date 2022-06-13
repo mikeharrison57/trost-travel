@@ -11,16 +11,18 @@ const dayjs = require('dayjs');
 
 // Query Selectors
 const travelerGreeting = document.querySelector('#travelerGreeting');
-const tripInfo = document.querySelector('#tripInfo');
-const tripInfoButtons = document.querySelectorAll('#tripButton');
 const tripCostThisYear = document.querySelector('#tripCostThisYear');
+const pastTripDisplay = document.querySelector('#pastTripInfo');
+const presentTripDisplay = document.querySelector('#presentTripInfo');
+const pendingTripDisplay = document.querySelector('#pendingTripInfo');
+const futureTripDisplay = document.querySelector('#futureTripInfo');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
 
 // Global Variables
 let travelerData, destinationData, tripData, 
-travelerId, travelerTrips, matchedTrips;
+travelerId, travelerTrips, matchedTrips, newUserTrip;
 
 // Functions
 const getRandomTraveler = repo => {
@@ -42,7 +44,6 @@ const instantiateClasses = (data) => {
   tripRepo = new TripRepo(tripData);
   travelerRepo = new TravelerRepo(travelerData);
   destinationRepo = new DestinationRepo(destinationData);
-  tripRepo.destinations.destinations.splice(0, 5, destinationData);
   renderPageData()
 };
 
@@ -51,6 +52,9 @@ const renderPageData = () => {
   sortTravelerTrips();
   sumTripCostThisYear();
   displayTripCostThisYear();
+  displayPastTrips();
+  displayPendingTrips();
+  displayUpcomingTrips();
 };
 
 const welcomeTraveler = () => {
@@ -59,12 +63,12 @@ const welcomeTraveler = () => {
 };
 
 const sortTravelerTrips = () => {
-  travelerTrips = tripRepo.trips.filter(trip => trip.userID === travelerId);
+  travelerTrips = tripRepo.trips.filter(trip => trip.userID === travelerId)
   travelerTripRepo = new TripRepo(travelerTrips);
-  travelerTripRepo.getPastTrips()
+  travelerTripRepo.getPastTrips();
   travelerTripRepo.getPresentTrips();
+  travelerTripRepo.getPendingTrips()
   travelerTripRepo.getFutureTrips();
-  travelerTripRepo.getPendingTrips();
 }
 
 const createPastTripObjects = () => {
@@ -80,6 +84,7 @@ const createPastTripObjects = () => {
       alt: foundDestination.alt,
       travelers: trip.travelers,
       duration: trip.duration,
+      status: trip.status,
       estimatedLodgingCostPerDay: foundDestination.estimatedLodgingCostPerDay,
       estimatedFlightCostPerPerson: foundDestination.estimatedFlightCostPerPerson
     }
@@ -87,6 +92,26 @@ const createPastTripObjects = () => {
   return pastTripInfo
 };
 
+const createPendingTripObjects = () => {
+  sortTravelerTrips();
+  let foundDestination;
+  const pendingTripInfo = travelerTripRepo.pendingTrips.map((trip) => {
+   foundDestination = destinationRepo.getDestinationById(trip.destinationID);
+    return {
+      startDate: dayjs(trip.date).toString().slice(0, 16),
+      duration: trip.duration,
+      destination: foundDestination.destination,
+      image: foundDestination.image,
+      alt: foundDestination.alt,
+      travelers: trip.travelers,
+      duration: trip.duration,
+      status: trip.status,
+      estimatedLodgingCostPerDay: foundDestination.estimatedLodgingCostPerDay,
+      estimatedFlightCostPerPerson: foundDestination.estimatedFlightCostPerPerson
+    }
+  })
+  return pendingTripInfo
+};
 
 const createFutureTripObjects = () => {
   sortTravelerTrips();
@@ -101,6 +126,7 @@ const createFutureTripObjects = () => {
       alt: foundDestination.alt,
       travelers: trip.travelers,
       duration: trip.duration,
+      status: trip.status,
       estimatedLodgingCostPerDay: foundDestination.estimatedLodgingCostPerDay,
       estimatedFlightCostPerPerson: foundDestination.estimatedFlightCostPerPerson
     }
@@ -126,45 +152,66 @@ const displayTripCostThisYear = () => {
 
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
-    tripInfo.innerHTML += 
+    pastTripDisplay.innerHTML += 
   `<div class="box-images">
     <img class="poster" src="${trip.image}"  alt="${trip.alt}">
   </div>
   <div class="box-name">
-    <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
+    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
     <p class="date">Start Date: ${trip.startDate}</p>
+    <p class="date">${trip.duration} Days</p>
   </div>
   <div class="box-footer">
     <div>
-      <h3 class="attachment-number" id="number">${trip.duration} Days</h3>
+      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
     </div>
   </div>` 
   })
   return pastTrips
 };
 
-// const displayUpcomingTrips = () => {
-//   const futureTrips = createFutureTripObjects().forEach((trip) => {
-//     tripInfo.innerHTML += 
-//   `<div class="box-images">
-//     <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-//   </div>
-//   <div class="box-name">
-//     <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
-//     <p class="date">Start Date: ${trip.startDate}</p>
-//   </div>
-//   <div class="box-footer">
-//     <div>
-//       <h3 class="attachment-number" id="number">${trip.duration} Days</h3>
-//     </div>
-//   </div>` 
-//   })
-//   return futureTrips
-// };
+const displayPendingTrips = () => {
+  console.log(createPendingTripObjects())
+  const pendingTrips = createPendingTripObjects().forEach((trip) => {
+    console.log(trip)
+    pendingTripDisplay.innerHTML +=
+    `<div class="box-images">
+    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+  </div>
+  <div class="box-name">
+    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
+    <p class="date">Start Date: ${trip.startDate}</p>
+    <p class="date">${trip.duration} Days</p>
+  </div>
+  <div class="box-footer">
+    <div>
+      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
+    </div>
+  </div>` 
+  })
+  return pendingTrips
+};
+
+const displayUpcomingTrips = () => {
+  const futureTrips = createFutureTripObjects().forEach((trip) => {
+    futureTripDisplay.innerHTML +=
+    `<div class="box-images">
+    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+  </div>
+  <div class="box-name">
+    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
+    <p class="date">Start Date: ${trip.startDate}</p>
+    <p class="date">{trip.duration} Days</p>
+  </div>
+  <div class="box-footer">
+    <div>
+      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
+    </div>
+  </div>` 
+  })
+  return futureTrips
+};
 
 
 // Event Listeners
 window.addEventListener("load", retrieveApiData("load"));
-tripInfoButtons[0].addEventListener('click', displayPastTrips);
-// tripInfoButtons[1].addEventListener('click', displayPresentTrips());
-// tripInfoButtons[2].addEventListener('click', displayUpcomingTrips());
