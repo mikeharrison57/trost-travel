@@ -56,90 +56,48 @@ const welcomeTraveler = () => {
 
 const sortTravelerTrips = () => {
   let travelerTrips = tripRepo.trips.filter(trip => trip.userID === travelerId);
+  travelerTripRepo = new TripRepo(travelerTrips);
+  travelerTripRepo.getPastTrips()
+  travelerTripRepo.getPresentTrips();
+  travelerTripRepo.getFutureTrips();
+  travelerTripRepo.getPendingTrips();
+}
+
+const createPastTripObjects = () => {
+  sortTravelerTrips();
   let foundDestination;
-  
-  const newTripArray = travelerTrips.map((trip) => {
+  const pastTripInfo = travelerTripRepo.pastTrips.map((trip) => {
    foundDestination = destinationRepo.getDestinationById(trip.destinationID);
     return {
-      startDate: dayjs(trip.date).toString().slice(0, 16),
+      date: trip.date,
       duration: trip.duration,
-      destination: foundDestination.destination,
+      destination: dayjs(trip.date).toString().slice(0, 16),
       image: foundDestination.image,
       alt: foundDestination.alt
     }
   })
-  return newTripArray
+  return pastTripInfo
 }
 
-const sortTravelerTrips = () => {
- 
-}
-
-// const createNewTripArray = () => {
-//   let foundDestination;
-//   const newTripArray = travelerTripRepo.trips.map((trip) => {
-//    foundDestination = destinationRepo.getDestinationById(trip.destinationID);
-//     return {
-//       startDate: dayjs(trip.date).toString().slice(0, 16),
-//       duration: trip.duration,
-//       destination: foundDestination.destination,
-//       image: foundDestination.image,
-//       alt: foundDestination.alt
-//     }
-//   })
-//   return newTripArray
-// }
-
-const displayTrips = (time) => {
-  console.log(sortTravelerTrips())
-  const tripsDisply = createNewTripArray().forEach((trip) => {
-      tripInfo.innerHTML += 
-    `<div class="box-images">
-      <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-    </div>
-    <div class="box-name">
-      <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
-      <p class="date">Start Date: ${trip.startDate}</p>
-    </div>
-    <div class="box-footer">
-      <div>
-        <h3 class="attachment-number" id="number">Trip Duration: ${trip.duration} Days</h3>
-      </div>
-    </div>` 
-  })
-  return tripsDisply
-}
-
-// Event Listeners 
-window.addEventListener("load", retrieveApiData("load"));
-tripInfoButtons[0].addEventListener('click', displayTrips('past'));
-// tripInfoButtons[1].addEventListener('click', displayTrips('present'));
-// tripInfoButtons[2].addEventListener('click', displayTrips('future'));
-// tripInfoButtons[3].addEventListener('click', displayTrips('pending'));
-
-
-/* <article class="mini-box">
-  <div class="box-images">
-    <img class="poster" src="./assets/scifi-poster.avif"  alt="Space-movie">
-    <img class="share" src="./assets/individual-share.png" alt="Individual-Share">
-    <label class="views">Views</label>
-    <h1 class="view-count" id="number">04</h1>
+const displayPastTrips = () => {
+  const pastTrips = createPastTripObjects().forEach((trip) => {
+    tripInfo.innerHTML += 
+  `<div class="box-images">
+    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
   </div>
   <div class="box-name">
-    <h4 class="recipeint-name">Name Here</h4>
-    <label class="date">Sunday 05/29/22 11:10AM</label>
-  </div>
-  <div class="box-link">
-    <label class="link">http://www.example. com/movie</lable>
+    <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
+    <p class="date">Start Date: ${trip.startDate}</p>
   </div>
   <div class="box-footer">
     <div>
-      <label class="playlist">Playlist</label>
-      <h4 class="playlist-name">Name of Playlist</h4>
+      <h3 class="attachment-number" id="number">${trip.duration} Days</h3>
     </div>
-    <div>
-      <p class="attachments">Attachements</p>
-      <h3 class="attachment-number" id="number">04</h3>
-    </div>
-  </div>
-</article> */
+  </div>` 
+  })
+  return pastTrips
+}
+
+// Event Listeners
+window.addEventListener("load", retrieveApiData("load"));
+tripInfoButtons[0].addEventListener('click', displayPastTrips)

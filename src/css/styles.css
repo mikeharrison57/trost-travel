@@ -29,17 +29,17 @@ header {
   padding: 5%;
 }
 
-.poster {
-  width: 14.5rem;
-  height: 7.5rem;
-  opacity: 80%;
-}
-
 .plantrip--section {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5%;
+}
+
+.poster {
+  width: 15rem;
+  height: 7.5rem;
+  opacity: 80%;
 }
 
 .toggle--trips {
@@ -49,5 +49,5 @@ header {
 .trip--form {
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 }
