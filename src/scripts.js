@@ -46,7 +46,6 @@ const instantiateClasses = (data) => {
 const renderPageData = () => {
   welcomeTraveler();
   sortTravelerTrips();
-  // displayPastTrips();
 }
 
 const welcomeTraveler = () => {
@@ -69,9 +68,9 @@ const createPastTripObjects = () => {
   const pastTripInfo = travelerTripRepo.pastTrips.map((trip) => {
    foundDestination = destinationRepo.getDestinationById(trip.destinationID);
     return {
-      date: trip.date,
+      startDate: dayjs(trip.date).toString().slice(0, 16),
       duration: trip.duration,
-      destination: dayjs(trip.date).toString().slice(0, 16),
+      destination: foundDestination.destination,
       image: foundDestination.image,
       alt: foundDestination.alt
     }
@@ -100,4 +99,6 @@ const displayPastTrips = () => {
 
 // Event Listeners
 window.addEventListener("load", retrieveApiData("load"));
-tripInfoButtons[0].addEventListener('click', displayPastTrips)
+tripInfoButtons[0].addEventListener('click', displayPastTrips);
+// tripInfoButtons[1].addEventListener('click', displayPresentTrips());
+// tripInfoButtons[2].addEventListener('click', displayUpcomingTrips());
