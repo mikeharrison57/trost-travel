@@ -7,6 +7,7 @@ const dayjs = require('dayjs');
 describe('TripRepo', () => {
   let tripRepo1;
   let tripRepo2;
+  let destinationRepo;
   beforeEach(() => {
     tripRepo1 = new TripRepo([trips[0], trips[1], trips[2]]);
     tripRepo2 = new TripRepo([trips[3], trips[4], trips[5]]);
