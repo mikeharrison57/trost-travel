@@ -4,13 +4,4 @@ const requestApiData = category => {
     .catch(err => console.log(err, `${category} API ERROR!`))
 };
 
-// const requestData = () => {
-//   Promise.all([
-//     requestApiData('trips'),
-//     requestApiData('travelers'),
-//     requestApiData('destinations')
-//   ]);
-// };
-
-
-export {requestApiData};
+export { requestApiData };

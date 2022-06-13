@@ -8,7 +8,7 @@ class TripRepo {
     this.pastTrips = [];
     this.presentTrips = [];
     this.futureTrips = [];
-    this.pendingTrips = [];
+    this.pendingTrips = []; 
     this.destinations = new DestinationRepo([
       destinations[0], 
       destinations[1], 
@@ -56,14 +56,22 @@ class TripRepo {
     return this.pendingTrips;
   }
 
+  // sortTrips() {
+  //   getPastTrips();
+  //   getPresentTrips();
+  //   getFutureTrips();
+  //   getPendingTrips();
+  //   return 
+  // }
+
   calculateTripCost(id) {
-    const foundDestination = this.destinations.getDestinationById(id);
-    const foundTrip = this.trips.find(trip => trip.destinationID === id)
+    let foundDestination = this.destinations.getDestinationById(id);
+    let foundTrip = this.trips.find(trip => trip.destinationID === id)
     let lodegingCosts = foundTrip.duration * foundDestination.estimatedLodgingCostPerDay;
     let flightCosts = foundTrip.travelers * foundDestination.estimatedFlightCostPerPerson;
-    let baseTripCost = flightCosts += lodegingCosts;
+    let baseTripCost = flightCosts + lodegingCosts;
     let travelAgentFee = baseTripCost * .10;
-    let totalTripCost = baseTripCost += travelAgentFee;
+    let totalTripCost = baseTripCost + travelAgentFee;
     return totalTripCost;
   }
 }

@@ -36,6 +36,16 @@ header {
   padding: 5%;
 }
 
+/* .trip--info {
+  overflow-y: auto;
+} */
+
+.poster {
+  width: 15rem;
+  height: 7.5rem;
+  opacity: 80%;
+}
+
 .toggle--trips {
   display: flex;
 }
@@ -43,5 +53,5 @@ header {
 .trip--form {
   display: flex;
   flex-direction: column;
-    align-items: center;
+  align-items: center;
 }
