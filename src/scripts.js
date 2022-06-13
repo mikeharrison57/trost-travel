@@ -124,15 +124,6 @@ const displayTripCostThisYear = () => {
   tripCostThisYear.innerHTML = `You've spent $${sumTripCostThisYear()} on trips this year!`
 }
 
-// alt: "people standing inside a colosseum during the day"
-// destination: "Rome, Italy"
-// duration: 17
-// estimatedFlightCostPerPerson: 650
-// estimatedLodgingCostPerDay: 90
-// image: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-// startDate: "Sun, 22 May 2022"
-// travelers: 4
-
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
     tripInfo.innerHTML += 
@@ -151,6 +142,26 @@ const displayPastTrips = () => {
   })
   return pastTrips
 };
+
+// const displayUpcomingTrips = () => {
+//   const futureTrips = createFutureTripObjects().forEach((trip) => {
+//     tripInfo.innerHTML += 
+//   `<div class="box-images">
+//     <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+//   </div>
+//   <div class="box-name">
+//     <h4 class="recipeint-name">Destination: ${trip.destination}</h4>
+//     <p class="date">Start Date: ${trip.startDate}</p>
+//   </div>
+//   <div class="box-footer">
+//     <div>
+//       <h3 class="attachment-number" id="number">${trip.duration} Days</h3>
+//     </div>
+//   </div>` 
+//   })
+//   return futureTrips
+// };
+
 
 // Event Listeners
 window.addEventListener("load", retrieveApiData("load"));
