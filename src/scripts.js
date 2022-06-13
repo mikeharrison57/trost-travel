@@ -16,6 +16,7 @@ const pastTripDisplay = document.querySelector('#pastTripInfo');
 const presentTripDisplay = document.querySelector('#presentTripInfo');
 const pendingTripDisplay = document.querySelector('#pendingTripInfo');
 const futureTripDisplay = document.querySelector('#futureTripInfo');
+const destinationSelector = document.querySelector('#destinationSelect');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
@@ -55,6 +56,7 @@ const renderPageData = () => {
   displayPastTrips();
   displayPendingTrips();
   displayUpcomingTrips();
+  setUpDestinationSelect();
 };
 
 const welcomeTraveler = () => {
@@ -171,9 +173,7 @@ const displayPastTrips = () => {
 };
 
 const displayPendingTrips = () => {
-  console.log(createPendingTripObjects())
   const pendingTrips = createPendingTripObjects().forEach((trip) => {
-    console.log(trip)
     pendingTripDisplay.innerHTML +=
     `<div class="box-images">
     <img class="poster" src="${trip.image}"  alt="${trip.alt}">
@@ -192,26 +192,34 @@ const displayPendingTrips = () => {
   return pendingTrips
 };
 
+
 const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
     futureTripDisplay.innerHTML +=
     `<div class="box-images">
     <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-  </div>
-  <div class="box-name">
+    </div>
+    <div class="box-name">
     <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
     <p class="date">Start Date: ${trip.startDate}</p>
-    <p class="date">{trip.duration} Days</p>
-  </div>
-  <div class="box-footer">
-    <div>
-      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
+    <p class="date">${trip.duration} Days</p>
     </div>
-  </div>` 
+    <div class="box-footer">
+    <div>
+    <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
+    </div>
+    </div>` 
   })
   return futureTrips
 };
 
+const setUpDestinationSelect = () => {
+  destinationRepo.destinations.forEach((destination) => {
+    destinationSelector.innerHTML += `<option value ="${destination.id}">${destination.destination}</option>`;
+  })
+}
+
+/* <option value="${destination.destinationID}">${destination.destination}</option>` */
 
 // Event Listeners
 window.addEventListener("load", retrieveApiData("load"));

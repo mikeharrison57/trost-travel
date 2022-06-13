@@ -23,7 +23,6 @@
           <h2>All Trips</h2>
         </article>
         <article class="trip--info">
-          <!-- <section></section> -->
           <h3>Past Trips</h3>
           <article id="pastTripInfo"></article>
           <h3>Present Trips</h3>
@@ -39,15 +38,17 @@
           <h2>Plan Trip</h2>
         </article>
           <form class="trip--form">
-            <label for="date">Departure Date?</label>
-            <input type="text" name="date">
-            <label for="duration">How Many Days?</label>
-            <input type="text" name="duration">
-            <label for="traveler-number">How Many Travelers?</label>
-            <input type="text" name="traveler-number">
-            <label for="destination">Destination?</label>
-            <input type="text" name="destination">
-            <button type="submit">REVIEW TRIP</button>
+            <label for="date">DEPARTURE DATE?</label>
+            <input type="date" name="date" required>
+            <label for="destination">DESTINATION?</label>
+            <select name="destinations" id="destinationSelect" required>
+            </select>
+            <label for="duration">HOW MANY DAYS?</label>
+            <input type="number" name="duration" value="1" required>
+            <label for="traveler-number">HOW MANY TRAVELERS?</label>
+            <input type="number" name="traveler-number" value="1" required>
+            <button type="button">REVIEW TRIP</button>
+            <button type="submit">CONFIRM TRIP</button>
           </form>
       </section>
     </section>
