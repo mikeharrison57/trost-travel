@@ -13,6 +13,7 @@ const dayjs = require('dayjs');
 const travelerGreeting = document.querySelector('#travelerGreeting');
 const tripInfo = document.querySelector('#tripInfo');
 const tripInfoButtons = document.querySelectorAll('#tripButton');
+const tripCostThisYear = document.querySelector('#tripCostThisYear');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
@@ -48,7 +49,8 @@ const instantiateClasses = (data) => {
 const renderPageData = () => {
   welcomeTraveler();
   sortTravelerTrips();
-  sumTripCostPerYear();
+  sumTripCostThisYear();
+  displayTripCostThisYear();
 };
 
 const welcomeTraveler = () => {
@@ -106,7 +108,7 @@ const createFutureTripObjects = () => {
   return futureTripInfo
 };
 
-const sumTripCostPerYear = () => {
+const sumTripCostThisYear = () => {
   const pastAndFutureTrips = createPastTripObjects().concat(createFutureTripObjects());
   const userTripsThisYear = pastAndFutureTrips.filter(trip => trip.startDate.includes('2022'));
   const tripCostThisYearSum = userTripsThisYear.reduce((acc, trip) => {
@@ -119,7 +121,7 @@ const sumTripCostPerYear = () => {
 }
 
 const displayTripCostThisYear = () => {
-  
+  tripCostThisYear.innerHTML = `You've spent $${sumTripCostThisYear()} on trips this year!`
 }
 
 // alt: "people standing inside a colosseum during the day"
