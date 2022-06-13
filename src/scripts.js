@@ -3,7 +3,7 @@
 
 // Imports
 import './css/styles.css';
-import { requestApiData } from './api-calls.js';
+import { requestApiData, postNewTrip } from './api-calls.js';
 import { TripRepo } from '../src/TripRepo';
 import { TravelerRepo } from '../src/TravelerRepo';
 import { DestinationRepo } from '../src/DestinationRepo'
@@ -217,7 +217,7 @@ const setUpDestinationSelect = () => {
   destinationRepo.destinations.forEach((destination) => {
     destinationSelector.innerHTML += `<option value ="${destination.id}">${destination.destination}</option>`;
   })
-}
+};
 
 /* <option value="${destination.destinationID}">${destination.destination}</option>` */
 
