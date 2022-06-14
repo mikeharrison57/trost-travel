@@ -18,8 +18,10 @@ const pendingTripDisplay = document.querySelector('#pendingTripInfo');
 const futureTripDisplay = document.querySelector('#futureTripInfo');
 const destinationSelector = document.querySelector('#destinationSelect');
 const submitButton = document.querySelector('#confirmBtn');
-const reviewTripButton = document.querySelector('#reviewTripBtn');
 const tripEstimate = document.querySelector('#tripEstimate');
+const formInputs = document.querySelectorAll('input');
+const destinationSelect = document.querySelector('select');
+const estimateTripCostBtn = document.querySelector('#estimateTripCost');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
@@ -29,9 +31,9 @@ let travelerData, destinationData, tripData,
 travelerId, travelerTrips;
 
 // Functions
-const getRandomId = repo => {
-  return Math.floor(Math.random() * repo.length + 1);
-};
+// const getRandomId = repo => {
+//   return Math.floor(Math.random() * repo.length + 1);
+// };
 
 const retrieveApiData = () => {
   Promise.all([
@@ -95,15 +97,19 @@ const welcomeTraveler = () => {
 };
 
 const estimateTripCost = () => {
-  let newTripIndex = tripRepo.trips.length - 1;
-  let newFoundTrip = tripRepo.trips.find(trip => trip.id === newTripIndex);
-  let newTripDestination = destinationRepo.getDestinationById(newFoundTrip.destinationID);
-  let newTripCost = (newTripDestination.estimatedFlightCostPerPerson * newFoundTrip.travelers) + (newTripDestination .estimatedLodgingCostPerDay * newFoundTrip.duration) * 1.1;
+  let newTripDestination = destinationRepo.getDestinationById(parseInt(destinationSelect.value));
+  let newTripDuration = parseInt(formInputs[1].value);
+  let newTripTravelers = parseInt(formInputs[2].value);
+  let newTripCost = (newTripDestination.estimatedFlightCostPerPerson * newTripTravelers) + (newTripDestination .estimatedLodgingCostPerDay * newTripDuration) * 1.1;
   return newTripCost
 }
 
-const displayEstimatedTripCost = () => {
+const displayEstimatedTripCost = (event) => {
+  event.preventDefault()
+  alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
+  Click CONFIRM TRIP to submit trip details.`)
   tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
+  submitButton.removeAttribute('disabled');
 }
 
 const sortTravelerTrips = () => {
@@ -257,3 +263,4 @@ const setUpDestinationSelect = () => {
 // Event Listeners
 window.addEventListener('load', retrieveApiData("load"));
 submitButton.addEventListener('click', postTripData);
+estimateTripCostBtn.addEventListener('click', displayEstimatedTripCost);
