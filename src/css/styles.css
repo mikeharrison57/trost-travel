@@ -1,5 +1,5 @@
  html {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: rgb(109, 188, 215);
   border: dashed;
   border-width: .25rem;
 }
@@ -15,29 +15,37 @@ header {
   align-items: stretch;
 }
 
-.main--page {
+.plantrip--section {
   display: flex;
-  justify-content: space-evenly;
-  align-items: stretch;
-  padding: 3rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+}
+
+.trip--form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .alltrips--section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5%;
+  background-image: url("https://img.freepik.com/free-vector/famous-world-monuments-seamless-pattern_1284-52141.jpg?t=st=1655182172~exp=1655182772~hmac=dd8ee3edd3ab76f13f95c08691c8f57093577be6ab2fb2564af41c1dae717b04&w=740");
+  background-color: #cccccc;
 }
 
-.plantrip--section {
+.trip-column {
+  width: 50%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5%;
+  background-color: #D68C45;
 }
 
 .trip--info {
-  overflow-y: scroll;
   display: flex;
 }
 
@@ -47,12 +55,7 @@ header {
   opacity: 80%;
 }
 
-.toggle--trips {
-  display: flex;
-}
-
-.trip--form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.trip-box {
+  background-color: #4C956C;
+  width: 100%;
 }

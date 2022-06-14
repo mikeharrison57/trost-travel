@@ -18,37 +18,55 @@
       </article>
     </header>
     <section class="main--page">
-      <section class="alltrips--section"
-        <article class="alltrips__heading">
-          <h2>All Trips</h2>
-        </article>
-        <article class="trip--info">
-          <!-- <section></section> -->
-          <h3>Past Trips</h3>
-          <article id="pastTripInfo"></article>
-          <h3>Present Trips</h3>
-          <article id="presentTripInfo"></article>
-          <h3>Pending Trips</h3>
-          <article id="pendingTripInfo"></article>
-          <h3>Future Trips</h3>
-          <article id="futureTripInfo"></article>
-        </article>
-      </section>
       <section class="plantrip--section">
         <article calls="plantrip--heading">
           <h2>Plan Trip</h2>
         </article>
           <form class="trip--form">
-            <label for="date">Departure Date?</label>
-            <input type="text" name="date">
-            <label for="duration">How Many Days?</label>
-            <input type="text" name="duration">
-            <label for="traveler-number">How Many Travelers?</label>
-            <input type="text" name="traveler-number">
-            <label for="destination">Destination?</label>
-            <input type="text" name="destination">
-            <button type="submit">REVIEW TRIP</button>
+            <label for="date">DEPARTURE DATE?
+              <input type="date" name="date" required>
+            </label>
+            <!-- <input type="date" name="date" required> -->
+            <label for="destination">DESTINATION?
+              <select name="destinations" id="destinationSelect" value="1" required>
+              </select>
+            </label>
+            <!-- <select name="destinations" id="destinationSelect" value="1" required>
+            </select> -->
+            <label for="duration">HOW MANY DAYS?
+              <input type="number" name="duration" required>
+            </label>
+            <!-- <input type="number" name="duration" required> -->
+            <label for="traveler-number">HOW MANY TRAVELERS?
+              <input type="number" name="traveler-number" required>
+            </label>
+            <!-- <input type="number" name="traveler-number" required> -->
+            <!-- <button type="button" id="reviewTripBtn">REVIEW TRIP</button> -->
+            <button type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
+            <button disabled type="submit" id="confirmBtn">CONFIRM TRIP </button>
           </form>
+          <article class="estimated-tripcost">
+            <h3 id="tripEstimate"></h3>
+          </article>
+      </section>
+      <section class="alltrips--section"
+        <article class="alltrips__heading">
+          <h2>All Trips</h2>
+        </article>
+        <article class="trip--info">
+          <article class="trip-column" id="pastTripInfo">
+            <h3>Past Trips</h3>
+          </article>
+          <article class="trip-column" id="presentTripInfo">
+            <h3>Present Trips</h3>
+          </article>
+          <article class="trip-column" id="pendingTripInfo">
+            <h3>Pending Trips</h3>
+          </article>
+          <article class="trip-column" id="futureTripInfo">
+            <h3>Future Trips</h3>
+          </article>
+        </article>
       </section>
     </section>
     <script src="bundle.js"></script>
