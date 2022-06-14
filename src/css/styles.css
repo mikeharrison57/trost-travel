@@ -1,23 +1,43 @@
- html {
+ body {
   background: rgb(109, 188, 215);
-  border: dashed;
-  border-width: .25rem;
 }
 
-header, article, section {
-  border: dashed;
-  border-width: .2rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+section, 
+.trip-column, 
+.trip-categories, 
+.trip-box {
+  border: solid;
+  border-width: 1px;
 }
 
 header {
   display: flex;
   justify-content: space-evenly;
   align-items: stretch;
+  padding: 3rem;
+  border: solid;
+  background-color: #D9D9D9;
 }
 
 button {
   background-color: #4C956C;
-  button-
+}
+
+button:hover {
+  background-color: #D68C45;
+  cursor: pointer;
 }
 
 .icon {
@@ -29,12 +49,17 @@ button {
   flex-direction: column;
   align-items: center;
   padding: 2%;
+  border: solid
 }
 
 .trip--form {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 3%;
+  opacity: 90%;
+  background-color: #cccccc;
+  border-radius: 5rem;
 }
 
 .alltrips--section {
@@ -56,7 +81,7 @@ button {
 
 .trip-categories {
   display: flex;
-  width:81.8%;
+  width: 63.5rem;
   background-color: #D68C45;
   justify-content: space-around;
 }
@@ -66,7 +91,7 @@ button {
 }
 
 .poster {
-  width: 16rem;
+  width: 14rem;
   height: 10rem;
 }
 
@@ -76,5 +101,6 @@ button {
   align-items: center;
   background-color: #4C956C;
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
+  margin: 1rem;
 }

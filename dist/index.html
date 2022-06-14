@@ -17,12 +17,12 @@
         <h3 id="tripCostThisYear">You've spent [trip cost] on trips this year!</h3>
       </article>
     </header>
-    <section tabindex="0" class="main--page">
+    <section class="main--page">
       <section class="plantrip--section">
-        <article tabindex="0"  calls="plantrip--heading">
-          <h2>Plan Trip</h2>
+        <article calls="plantrip--heading">
+          <h2 tabindex="0" >Plan Trip</h2>
         </article>
-          <form tabindex="0" class="trip--form">
+          <form class="trip--form">
             <label tabindex="0" for="date">DEPARTURE DATE?
               <input tabindex="0" type="date" name="date" required>
             </label>
@@ -31,12 +31,12 @@
               </select>
             </label>
             <label tabindex="0" for="duration">HOW MANY DAYS?
-              <input tabindex="0" type="number" name="duration" required>
+              <input tabindex="0" type="number" min="1" name="duration" required>
             </label>
             <label tabindex="0" for="traveler-number">HOW MANY TRAVELERS?
-              <input tabindex="0" type="number" name="traveler-number" required>
+              <input tabindex="0" type="number" min="1" name="traveler-number" required>
             </label>
-            <button tabindex="0" disabled type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
+            <button tabindex="0" type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
             <button tabindex="0" disabled type="submit" id="confirmBtn">CONFIRM TRIP </button>
           </form>
           <article tabindex="0" class="estimated-tripcost">
@@ -46,12 +46,12 @@
       <section tabindex="0" class="alltrips--section"
         <article tabindex="0" class="alltrips__heading">
           <h2>All Trips</h2>
-          <article tabindex="0" class="trip-categories">
-            <h3>Pending Trips</h3>
-            <h3>Past Trips</h3>
-            <h3>Present Trips</h3>
-            <h3>Future Trips</h3>
-          </article>
+        </article>
+        <article tabindex="0" class="trip-categories">
+          <h3>Pending Trips</h3>
+          <h3>Past Trips</h3>
+          <h3>Present Trips</h3>
+          <h3>Future Trips</h3>
         </article>
         <article tabindex="0"  class="trip--info">
           <article tabindex="0" class="trip-column" id="pendingTripInfo"></article>

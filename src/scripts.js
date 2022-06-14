@@ -31,10 +31,6 @@ let tripRepo, travelerRepo, destinationRepo, travelerTripRepo;
 let travelerData, destinationData, tripData, 
 travelerId, travelerTrips;
 
-// Functions
-// const getRandomId = repo => {
-//   return Math.floor(Math.random() * repo.length + 1);
-// };
 
 const retrieveApiData = () => {
   Promise.all([
@@ -109,10 +105,14 @@ const estimateTripCost = () => {
 
 const displayEstimatedTripCost = (event) => {
   event.preventDefault()
-  alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
-  Click CONFIRM TRIP to submit trip details.`)
-  tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
-  submitButton.removeAttribute('disabled');
+  // console.log(formInputs[1])
+  // if (formInputs[1].value != null && formInputs[2] != null) {
+    estimateTripCostBtn.removeAttribute('disabled');
+    alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
+    Click CONFIRM TRIP to submit trip details.`)
+    tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
+    submitButton.removeAttribute('disabled');
+  // }
 }
 
 const sortTravelerTrips = () => {
@@ -227,7 +227,7 @@ const displayTripCostThisYear = () => {
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
     pastTripDisplay.innerHTML += 
-`<article tabindex="0" class="trip-box">
+`<article class="trip-box">
     <div class="box-image">
       <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
@@ -246,7 +246,7 @@ const displayPresentTrips = () => {
   console.log(createPresentTripObjects())
   const presentTrips = createPresentTripObjects().forEach((trip) => {
     presentTripDisplay.innerHTML +=
-    `<article tabindex="0" class="trip-box">
+    `<article class="trip-box">
         <div class="box-image">
           <img class="poster" src="${trip.image}"  alt="${trip.alt}">
         </div>
@@ -264,7 +264,7 @@ const displayPresentTrips = () => {
 const displayPendingTrips = () => {
   const pendingTrips = createPendingTripObjects().forEach((trip) => {
     pendingTripDisplay.innerHTML +=
-    `<article tabindex="0" class="trip-box">
+    `<article class="trip-box">
     <div class="box-image">
       <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
@@ -285,7 +285,7 @@ const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
     if(trip.status === 'approved') {
       futureTripDisplay.innerHTML +=
-      `<article tabindex="0" class="trip-box">
+      `<article class="trip-box">
       <div class="box-image">
         <img class="poster" src="${trip.image}"  alt="${trip.alt}">
       </div>
