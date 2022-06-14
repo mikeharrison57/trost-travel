@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trost Travel</title>
 </head>
-  <body>
-    <header class="header">
+  <body> 
+    <header class="header hidden" id="header">
       <article tabindex="0" class="title--section">
         <!-- <img class="icon" src="./images/trost-logo" alt="Trost Logo"> -->
         <h1>Trost Travel</h1>
@@ -17,7 +17,20 @@
         <h3 id="tripCostThisYear">You've spent [trip cost] on trips this year!</h3>
       </article>
     </header>
-    <section class="main--page">
+    <section class ="login-page" id="loginPage">
+      <h1>LOGIN<h1>
+        <form id="loginForm">
+          <label for="name"><sup> * </sup>USERNAME:
+            <input type="text" id="username" name="username" required>
+          </label>
+          <label for="password"><sup> * </sup>PASSWORD:
+            <input type="password" id="password" name="password"
+            minlength="8" required>
+          </label>
+          <button type="submit" class ="login-button" name="sign-in" value="SIGN-IN">SIGN-IN
+        </form>
+    </section>
+    <section class="main--page hidden" id="mainPage">
       <section class="plantrip--section">
         <article calls="plantrip--heading">
           <h2 tabindex="0" >Plan Trip</h2>

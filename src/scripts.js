@@ -23,6 +23,12 @@ const tripEstimate = document.querySelector('#tripEstimate');
 const formInputs = document.querySelectorAll('input');
 const destinationSelect = document.querySelector('select');
 const estimateTripCostBtn = document.querySelector('#estimateTripCost');
+const loginPage = document.querySelector('#loginPage');
+const header = document.querySelector('#header');
+const mainPage = document.querySelector('#mainPage');
+const loginForm = document.querySelector('#loginForm');
+const usernameInput = document.querySelector('#username');
+const password = document.querySelector('#password');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
@@ -31,6 +37,9 @@ let tripRepo, travelerRepo, destinationRepo, travelerTripRepo;
 let travelerData, destinationData, tripData, 
 travelerId, travelerTrips;
 
+const loginToPage = () => {
+  
+}
 
 const retrieveApiData = () => {
   Promise.all([
@@ -61,7 +70,7 @@ const createPostObjects = form => {
     status: "pending",
     suggestedActivities: [ ]
   }
-}
+};
 
 const postTripData = event => {
   event.preventDefault()
@@ -74,7 +83,7 @@ const postTripData = event => {
     futureTripDisplay.innerHTML = ''
     retrieveApiData(travelerId)
   })
-}
+};
 
 const renderPageData = () => {
   welcomeTraveler();
@@ -87,7 +96,6 @@ const renderPageData = () => {
   setUpDestinationSelect();
   displayEstimatedTripCost();
   displayPresentTrips();
-  console.log(createPresentTripObjects())
 };
 
 const welcomeTraveler = () => {
@@ -95,21 +103,23 @@ const welcomeTraveler = () => {
   travelerGreeting.innerHTML = `Welcome ${travelerRepo.returnTravelerFirstName(travelerId)}! Would you like to plan a trip today?`
 };
 
+
+
 const estimateTripCost = () => {
   let newTripDestination = destinationRepo.getDestinationById(parseInt(destinationSelect.value));
   let newTripDuration = parseInt(formInputs[1].value);
   let newTripTravelers = parseInt(formInputs[2].value);
   let newTripCost = (newTripDestination.estimatedFlightCostPerPerson * newTripTravelers) + (newTripDestination .estimatedLodgingCostPerDay * newTripDuration) * 1.1;
   return newTripCost
-}
+};
 
 const displayEstimatedTripCost = (event) => {
-  event.preventDefault()
+  // event.preventDefault()
   // console.log(formInputs[1])
   // if (formInputs[1].value != null && formInputs[2] != null) {
-    estimateTripCostBtn.removeAttribute('disabled');
-    alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
-    Click CONFIRM TRIP to submit trip details.`)
+    // estimateTripCostBtn.removeAttribute('disabled');
+    // alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
+    // Click CONFIRM TRIP to submit trip details.`)
     tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
     submitButton.removeAttribute('disabled');
   // }
@@ -311,3 +321,4 @@ const setUpDestinationSelect = () => {
 window.addEventListener('load', retrieveApiData("load"));
 submitButton.addEventListener('click', postTripData);
 estimateTripCostBtn.addEventListener('click', displayEstimatedTripCost);
+loginForm.addEventListener('submit', )
