@@ -7,6 +7,7 @@ import { requestApiData, postNewTrip } from './api-calls.js';
 import { TripRepo } from '../src/TripRepo';
 import { TravelerRepo } from '../src/TravelerRepo';
 import { DestinationRepo } from '../src/DestinationRepo'
+// import './images/trost-logo'
 const dayjs = require('dayjs');
 
 // Query Selectors
@@ -226,11 +227,11 @@ const displayTripCostThisYear = () => {
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
     pastTripDisplay.innerHTML += 
-`<article tabindex="17"  class="trip-box">
+`<article tabindex="0" class="trip-box">
     <div class="box-image">
       <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
-    <div class="box-info">
+    <div tabindex="0" class="box-info">
       <h3>Destination: ${trip.destination}</h3>
       <p>Start Date: ${trip.startDate}</p>
       <p>${trip.duration} Days</p>
@@ -245,11 +246,11 @@ const displayPresentTrips = () => {
   console.log(createPresentTripObjects())
   const presentTrips = createPresentTripObjects().forEach((trip) => {
     presentTripDisplay.innerHTML +=
-    `<article tabindex="21" class="trip-box">
+    `<article tabindex="0" class="trip-box">
         <div class="box-image">
           <img class="poster" src="${trip.image}"  alt="${trip.alt}">
         </div>
-        <div class="box-info">
+        <div tabindex="0" class="box-info">
           <h3>Destination: ${trip.destination}</h3>
           <p>Start Date: ${trip.startDate}</p>
           <p>${trip.duration} Days</p>
@@ -263,11 +264,11 @@ const displayPresentTrips = () => {
 const displayPendingTrips = () => {
   const pendingTrips = createPendingTripObjects().forEach((trip) => {
     pendingTripDisplay.innerHTML +=
-    `<article tabindex="13"  class="trip-box">
+    `<article tabindex="0" class="trip-box">
     <div class="box-image">
       <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
-    <div class="box-info">
+    <div tabindex="0" class="box-info">
       <h3>Destination: ${trip.destination}</h3>
       <p>Start Date: ${trip.startDate}</p>
       <p>${trip.duration} Days</p>
@@ -284,17 +285,17 @@ const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
     if(trip.status === 'approved') {
       futureTripDisplay.innerHTML +=
-      `<article tabindex="25" class="trip-box">
+      `<article tabindex="0" class="trip-box">
       <div class="box-image">
-      <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+        <img class="poster" src="${trip.image}"  alt="${trip.alt}">
       </div>
-      <div class="box-info">
-      <h3>Destination: ${trip.destination}</h3>
-      <p>Start Date: ${trip.startDate}</p>
-      <p>${trip.duration} Days</p>
-      <h4>Status: ${trip.status}</h4>
+      <div tabindex="0" class="box-info">
+        <h3>Destination: ${trip.destination}</h3>
+        <p>Start Date: ${trip.startDate}</p>
+        <p>${trip.duration} Days</p>
+        <h4>Status: ${trip.status}</h4>
       </div>
-      </article>` 
+    </article>` 
     }
     })
   return futureTrips
