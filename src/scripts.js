@@ -186,7 +186,7 @@ const createFutureTripObjects = () => {
 
 const sumTripCostThisYear = () => {
   const pastAndFutureTrips = createPastTripObjects().concat(createFutureTripObjects());
-  const userTripsThisYear = pastAndFutureTrips.filter(trip => trip.startDate.includes('2022'));
+  const userTripsThisYear = pastAndFutureTrips.filter(trip => trip.startDate.includes('2022') && trip.status === 'approved');
   const tripCostThisYearSum = userTripsThisYear.reduce((acc, trip) => {
     const baseTripCost = (trip.estimatedFlightCostPerPerson * trip.travelers) + (trip.estimatedLodgingCostPerDay * trip.duration);
     const travelAgentFee = baseTripCost * .10;

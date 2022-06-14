@@ -15,6 +15,10 @@ header {
   align-items: stretch;
 }
 
+.icon {
+  width: 4rem;
+}
+
 .plantrip--section {
   display: flex;
   flex-direction: column;
@@ -38,7 +42,7 @@ header {
 
 .trip-column {
   width: 50%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +54,7 @@ header {
 }
 
 .poster {
-  width: 15rem;
+  width: 14rem;
   height: 7.5rem;
   opacity: 80%;
 }
