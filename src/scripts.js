@@ -17,7 +17,6 @@ const presentTripDisplay = document.querySelector('#presentTripInfo');
 const pendingTripDisplay = document.querySelector('#pendingTripInfo');
 const futureTripDisplay = document.querySelector('#futureTripInfo');
 const destinationSelector = document.querySelector('#destinationSelect');
-// const formInputs = document.querySelectorAll('input');
 const submitButton = document.querySelector('#confirmBtn');
 const reviewTripButton = document.querySelector('#reviewTripBtn');
 
@@ -52,7 +51,6 @@ const instantiateClasses = (data) => {
 };
 
 const createPostObjects = form => {
-  
   return {
     id: parseInt(tripRepo.trips.length + 1),
     userID: parseInt(travelerId),
@@ -179,25 +177,23 @@ const sumTripCostThisYear = () => {
 }
 
 const displayTripCostThisYear = () => {
-  tripCostThisYear.innerHTML = `You've spent $${sumTripCostThisYear()} on trips this year!`
+  tripCostThisYear.innerHTML = `You've spent $${sumTripCostThisYear()}.00 on trips this year!`
 }
 
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
     pastTripDisplay.innerHTML += 
-  `<div class="box-images">
-    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-  </div>
-  <div class="box-name">
-    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
-    <p class="date">Start Date: ${trip.startDate}</p>
-    <p class="date">${trip.duration} Days</p>
-  </div>
-  <div class="box-footer">
-    <div>
-      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
+`<article class="trip-box">
+    <div class="box-image">
+      <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
-  </div>` 
+    <div class="box-info">
+      <h3>Destination: ${trip.destination}</h3>
+      <p>Start Date: ${trip.startDate}</p>
+      <p>${trip.duration} Days</p>
+      <h4>Status: ${trip.status}</h4>
+    </div>
+  </article>` 
   })
   return pastTrips
 };
@@ -205,41 +201,36 @@ const displayPastTrips = () => {
 const displayPendingTrips = () => {
   const pendingTrips = createPendingTripObjects().forEach((trip) => {
     pendingTripDisplay.innerHTML +=
-    `<div class="box-images">
-    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-  </div>
-  <div class="box-name">
-    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
-    <p class="date">Start Date: ${trip.startDate}</p>
-    <p class="date">${trip.duration} Days</p>
-  </div>
-  <div class="box-footer">
-    <div>
-      <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
-    </div>
-  </div>` 
+    `<article class="trip-box">
+        <div class="box-image">
+          <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+        </div>
+        <div class="box-info">
+          <h3>Destination: ${trip.destination}</h3>
+          <p>Start Date: ${trip.startDate}</p>
+          <p>${trip.duration} Days</p>
+          <h4>Status: ${trip.status}</h4>
+        </div>
+      </article>` 
   })
   return pendingTrips
 };
 
-
 const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
     futureTripDisplay.innerHTML +=
-    `<div class="box-images">
-    <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-    </div>
-    <div class="box-name">
-    <h3 class="recipeint-name">Destination: ${trip.destination}</h3>
-    <p class="date">Start Date: ${trip.startDate}</p>
-    <p class="date">${trip.duration} Days</p>
-    </div>
-    <div class="box-footer">
-    <div>
-    <h4 class="attachment-number" id="number">Status: ${trip.status}</h4>
-    </div>
-    </div>` 
-  })
+      `<article class="trip-box">
+        <div class="box-image">
+          <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+        </div>
+        <div class="box-info">
+          <h3 >Destination: ${trip.destination}</h3>
+          <p>Start Date: ${trip.startDate}</p>
+          <p>${trip.duration} Days</p>
+          <h4>Status: ${trip.status}</h4>
+        </div>
+      </article>` 
+    })
   return futureTrips
 };
 
@@ -248,8 +239,6 @@ const setUpDestinationSelect = () => {
     destinationSelector.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`;
   })
 };
-
-/* <option value="${destination.destinationID}">${destination.destination}</option>` */
 
 // Event Listeners
 window.addEventListener('load', retrieveApiData("load"));
