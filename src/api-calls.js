@@ -4,17 +4,25 @@ const requestApiData = category => {
     .catch(err => console.log(err, `${category} API ERROR!`))
 };
 
-const postNewTrip = () => {
+
+const postNewTrip = (newUserTrip) => {
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify (newUserTrip)
+    body: JSON.stringify(newUserTrip)
   })
-  .then(response => response.json())
-  .then()
-}
+  .then(response => {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    console.log(response)
+    return response
+  })
+  .then(data => {console.log('Trip Confirmed!')})
+  .catch(err => {console.log(err)})
+} 
 
 // display pending trips here
 // right function that creates new trip objects

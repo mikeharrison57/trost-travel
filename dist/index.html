@@ -41,14 +41,14 @@
             <label for="date">DEPARTURE DATE?</label>
             <input type="date" name="date" required>
             <label for="destination">DESTINATION?</label>
-            <select name="destinations" id="destinationSelect" required>
+            <select name="destinations" id="destinationSelect" value="1" required>
             </select>
             <label for="duration">HOW MANY DAYS?</label>
-            <input type="number" name="duration" value="1" required>
+            <input type="number" name="duration" required>
             <label for="traveler-number">HOW MANY TRAVELERS?</label>
-            <input type="number" name="traveler-number" value="1" required>
-            <button type="button">REVIEW TRIP</button>
-            <button type="submit">CONFIRM TRIP</button>
+            <input type="number" name="traveler-number" required>
+            <button type="button" id="reviewTripBtn">REVIEW TRIP</button>
+            <button type="submit" id="confirmBtn">CONFIRM TRIP</button>
           </form>
       </section>
     </section>
