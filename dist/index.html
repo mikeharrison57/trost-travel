@@ -8,11 +8,11 @@
 </head>
   <body>
     <header class="header">
-      <article class="title--section">
-        <!-- <img class="icon" src=".images/trost-logo.png" alt="Trost Logo"> -->
+      <article tabindex="0" class="title--section">
+        <!-- <img class="icon" src="./images/trost-logo" alt="Trost Logo"> -->
         <h1>Trost Travel</h1>
       </article>
-      <article class="welcome--section">
+      <article tabindex="0" class="welcome--section">
         <h2 id="travelerGreeting">Welcome [traveler name]! Would you like to plan a trip today?</h2>
         <h3 id="tripCostThisYear">You've spent [trip cost] on trips this year!</h3>
       </article>
@@ -20,55 +20,49 @@
     <section class="main--page">
       <section class="plantrip--section">
         <article calls="plantrip--heading">
-          <h2>Plan Trip</h2>
+          <h2 tabindex="0" >Plan Trip</h2>
         </article>
           <form class="trip--form">
-            <label for="date">DEPARTURE DATE?
-              <input type="date" name="date" required>
+            <label tabindex="0" for="date">DEPARTURE DATE?
+              <input tabindex="0" type="date" name="date" required>
             </label>
-            <!-- <input type="date" name="date" required> -->
-            <label for="destination">DESTINATION?
-              <select name="destinations" id="destinationSelect" value="1" required>
+            <label tabindex="0" for="destination">DESTINATION?
+              <select tabindex="0" name="destinations" id="destinationSelect" value="1" required>
               </select>
             </label>
-            <!-- <select name="destinations" id="destinationSelect" value="1" required>
-            </select> -->
-            <label for="duration">HOW MANY DAYS?
-              <input type="number" name="duration" required>
+            <label tabindex="0" for="duration">HOW MANY DAYS?
+              <input tabindex="0" type="number" min="1" name="duration" required>
             </label>
-            <!-- <input type="number" name="duration" required> -->
-            <label for="traveler-number">HOW MANY TRAVELERS?
-              <input type="number" name="traveler-number" required>
+            <label tabindex="0" for="traveler-number">HOW MANY TRAVELERS?
+              <input tabindex="0" type="number" min="1" name="traveler-number" required>
             </label>
-            <!-- <input type="number" name="traveler-number" required> -->
-            <!-- <button type="button" id="reviewTripBtn">REVIEW TRIP</button> -->
-            <button type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
-            <button disabled type="submit" id="confirmBtn">CONFIRM TRIP </button>
+            <button tabindex="0" type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
+            <button tabindex="0" disabled type="submit" id="confirmBtn">CONFIRM TRIP </button>
           </form>
-          <article class="estimated-tripcost">
-            <h3 id="tripEstimate"></h3>
+          <article tabindex="0" class="estimated-tripcost">
+            <h3 tabindex="0" id="tripEstimate"></h3>
           </article>
       </section>
-      <section class="alltrips--section"
-        <article class="alltrips__heading">
+      <section tabindex="0" class="alltrips--section"
+        <article tabindex="0" class="alltrips__heading">
           <h2>All Trips</h2>
         </article>
-        <article class="trip--info">
-          <article class="trip-column" id="pastTripInfo">
-            <h3>Past Trips</h3>
-          </article>
-          <article class="trip-column" id="presentTripInfo">
-            <h3>Present Trips</h3>
-          </article>
-          <article class="trip-column" id="pendingTripInfo">
-            <h3>Pending Trips</h3>
-          </article>
-          <article class="trip-column" id="futureTripInfo">
-            <h3>Future Trips</h3>
-          </article>
+        <article tabindex="0" class="trip-categories">
+          <h3>Pending Trips</h3>
+          <h3>Past Trips</h3>
+          <h3>Present Trips</h3>
+          <h3>Future Trips</h3>
+        </article>
+        <article tabindex="0"  class="trip--info">
+          <article tabindex="0" class="trip-column" id="pendingTripInfo"></article>
+          <article tabindex="0"  class="trip-column" id="pastTripInfo"></article>
+          <article tabindex="0" class="trip-column" id="presentTripInfo"></article>
+          <article tabindex="0" class="trip-column" id="futureTripInfo"></article>
         </article>
       </section>
     </section>
     <script src="bundle.js"></script>
   </body>
 </html>
+
+<!-- type='number' min='1' oninput="validity.valid||(value='');" -->
