@@ -89,6 +89,8 @@ const renderPageData = () => {
   displayUpcomingTrips();
   setUpDestinationSelect();
   displayEstimatedTripCost();
+  displayPresentTrips();
+  console.log(createPresentTripObjects())
 };
 
 const welcomeTraveler = () => {
@@ -141,6 +143,27 @@ const createPastTripObjects = () => {
   })
   return pastTripInfo
 };
+
+const createPresentTripObjects = () => {
+  sortTravelerTrips();
+  let foundDestination;
+  const presentTripInfo = travelerTripRepo.presentTrips.map((trip) => {
+   foundDestination = destinationRepo.getDestinationById(trip.destinationID);
+    return {
+      startDate: dayjs(trip.date).toString().slice(0, 16),
+      duration: trip.duration,
+      destination: foundDestination.destination,
+      image: foundDestination.image,
+      alt: foundDestination.alt,
+      travelers: trip.travelers,
+      duration: trip.duration,
+      status: trip.status,
+      estimatedLodgingCostPerDay: foundDestination.estimatedLodgingCostPerDay,
+      estimatedFlightCostPerPerson: foundDestination.estimatedFlightCostPerPerson
+    }
+  })
+  return presentTripInfo
+}
 
 const createPendingTripObjects = () => {
   sortTravelerTrips();
@@ -203,7 +226,7 @@ const displayTripCostThisYear = () => {
 const displayPastTrips = () => {
   const pastTrips = createPastTripObjects().forEach((trip) => {
     pastTripDisplay.innerHTML += 
-`<article class="trip-box">
+`<article tabindex="17"  class="trip-box">
     <div class="box-image">
       <img class="poster" src="${trip.image}"  alt="${trip.alt}">
     </div>
@@ -218,10 +241,11 @@ const displayPastTrips = () => {
   return pastTrips
 };
 
-const displayPendingTrips = () => {
-  const pendingTrips = createPendingTripObjects().forEach((trip) => {
-    pendingTripDisplay.innerHTML +=
-    `<article class="trip-box">
+const displayPresentTrips = () => {
+  console.log(createPresentTripObjects())
+  const presentTrips = createPresentTripObjects().forEach((trip) => {
+    presentTripDisplay.innerHTML +=
+    `<article tabindex="21" class="trip-box">
         <div class="box-image">
           <img class="poster" src="${trip.image}"  alt="${trip.alt}">
         </div>
@@ -233,23 +257,45 @@ const displayPendingTrips = () => {
         </div>
       </article>` 
   })
+  return presentTrips
+};
+
+const displayPendingTrips = () => {
+  const pendingTrips = createPendingTripObjects().forEach((trip) => {
+    pendingTripDisplay.innerHTML +=
+    `<article tabindex="13"  class="trip-box">
+    <div class="box-image">
+      <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+    </div>
+    <div class="box-info">
+      <h3>Destination: ${trip.destination}</h3>
+      <p>Start Date: ${trip.startDate}</p>
+      <p>${trip.duration} Days</p>
+      <h4>Status: ${trip.status}</h4>
+    </div>
+  </article>` 
+  })
   return pendingTrips
 };
 
+
+
 const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
-    futureTripDisplay.innerHTML +=
-      `<article class="trip-box">
-        <div class="box-image">
-          <img class="poster" src="${trip.image}"  alt="${trip.alt}">
-        </div>
-        <div class="box-info">
-          <h3 >Destination: ${trip.destination}</h3>
-          <p>Start Date: ${trip.startDate}</p>
-          <p>${trip.duration} Days</p>
-          <h4>Status: ${trip.status}</h4>
-        </div>
+    if(trip.status === 'approved') {
+      futureTripDisplay.innerHTML +=
+      `<article tabindex="25" class="trip-box">
+      <div class="box-image">
+      <img class="poster" src="${trip.image}"  alt="${trip.alt}">
+      </div>
+      <div class="box-info">
+      <h3>Destination: ${trip.destination}</h3>
+      <p>Start Date: ${trip.startDate}</p>
+      <p>${trip.duration} Days</p>
+      <h4>Status: ${trip.status}</h4>
+      </div>
       </article>` 
+    }
     })
   return futureTrips
 };

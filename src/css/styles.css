@@ -41,12 +41,19 @@ header {
 }
 
 .trip-column {
-  width: 50%;
-  /* overflow-y: scroll; */
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 3%;
   background-color: #D68C45;
+}
+
+.trip-categories {
+  display: flex;
+  width:81.8%;
+  background-color: #D68C45;
+  justify-content: space-around;
 }
 
 .trip--info {
@@ -54,12 +61,15 @@ header {
 }
 
 .poster {
-  width: 14rem;
-  height: 7.5rem;
-  opacity: 80%;
+  width: 16rem;
+  height: 10rem;
 }
 
 .trip-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #4C956C;
   width: 100%;
+  padding: 2rem;
 }
