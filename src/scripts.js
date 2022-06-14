@@ -19,13 +19,14 @@ const futureTripDisplay = document.querySelector('#futureTripInfo');
 const destinationSelector = document.querySelector('#destinationSelect');
 const submitButton = document.querySelector('#confirmBtn');
 const reviewTripButton = document.querySelector('#reviewTripBtn');
+const tripEstimate = document.querySelector('#tripEstimate');
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
 
 // Global Variables
 let travelerData, destinationData, tripData, 
-travelerId, travelerTrips, matchedTrips, newUserTrip;
+travelerId, travelerTrips;
 
 // Functions
 const getRandomId = repo => {
@@ -85,12 +86,25 @@ const renderPageData = () => {
   displayPendingTrips();
   displayUpcomingTrips();
   setUpDestinationSelect();
+  displayEstimatedTripCost();
 };
 
 const welcomeTraveler = () => {
-  travelerId = 44
+  travelerId = 47
   travelerGreeting.innerHTML = `Welcome ${travelerRepo.returnTravelerFirstName(travelerId)}! Would you like to plan a trip today?`
 };
+
+const estimateTripCost = () => {
+  let newTripIndex = tripRepo.trips.length - 1;
+  let newFoundTrip = tripRepo.trips.find(trip => trip.id === newTripIndex);
+  let newTripDestination = destinationRepo.getDestinationById(newFoundTrip.destinationID);
+  let newTripCost = (newTripDestination.estimatedFlightCostPerPerson * newFoundTrip.travelers) + (newTripDestination .estimatedLodgingCostPerDay * newFoundTrip.duration) * 1.1;
+  return newTripCost
+}
+
+const displayEstimatedTripCost = () => {
+  tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
+}
 
 const sortTravelerTrips = () => {
   travelerTrips = tripRepo.trips.filter(trip => trip.userID === travelerId)
