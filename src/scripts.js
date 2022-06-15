@@ -1,13 +1,9 @@
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// An example of how you tell webpack to use a CSS (SCSS) file
-
 // Imports
 import "./css/styles.css";
 import { requestApiData, postNewTrip, fetchUser } from "./api-calls.js";
 import { TripRepo } from "../src/TripRepo";
 import { TravelerRepo } from "../src/TravelerRepo";
 import { DestinationRepo } from "../src/DestinationRepo";
-// import './images/trost-logo'
 const dayjs = require("dayjs");
 
 // Query Selectors
@@ -26,10 +22,8 @@ const estimateTripCostBtn = document.querySelector("#estimateTripCost");
 const loginPage = document.querySelector("#loginPage");
 const header = document.querySelector("#header");
 const mainPage = document.querySelector("#mainPage");
-// const loginForm = document.querySelector('#loginForm');
-const usernameInput = document.querySelector("#username");
-const passwordInput = document.querySelector("#password");
 const loginButton = document.querySelector(".login-button");
+const logoutButton = document.querySelector("#logout");
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo;
@@ -44,17 +38,6 @@ const show = (element) => {
 const hide = (element) => {
   element.classList.add("hidden");
 };
-
-// const captureUserInput = (event) => {
-//   let userId = parseInt(usernameInput.value.split('traveler')[1]);
-//   // renderPageData(userId)
-//   // if (event.target.name === "username") {
-//   //   let inputValue = event.target.value;
-//   //   let usernameValue = inputValue.split("traveler");
-//   //   travelerId = parseInt(usernameValue[1]);
-//   // }
-//   // return travelerId
-// };
 
 const validateUsername = (username) => {
   const usernameWord = username.value.substring(0, 8);
@@ -101,7 +84,12 @@ const loginToPage = (event) => {
   });
 };
 
-// traveler
+const logoutOfPage = () =>{
+  event.preventDefault()
+  show(loginPage);
+  hide(header);
+  hide(mainPage);
+}
 
 const retrieveApiData = () => {
   Promise.all([
@@ -389,7 +377,7 @@ const setUpDestinationSelect = () => {
 };
 
 // Event Listeners
-// window.addEventListener('load', retrieveApiData("load"));
 submitButton.addEventListener("click", postTripData);
 estimateTripCostBtn.addEventListener("click", displayEstimatedTripCost);
 loginButton.addEventListener("click", loginToPage);
+logoutButton.addEventListener('click', logoutOfPage);

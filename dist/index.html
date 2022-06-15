@@ -15,19 +15,21 @@
           </label>
           <label for="password"><sup> * </sup>PASSWORD:
             <input type="password" id="password" name="password"
-            minlength="8" required>
+            minlength="6" required>
           </label>
-          <button type="submit" class ="login-button" name="sign-in" value="SIGN-IN">SIGN-IN
+          <button type="submit" class ="login-button" name="sign-in" value="SIGN-IN">SIGN-IN</button>
         </form>
     </section>
     <header class="header hidden" id="header">
       <article tabindex="0" class="title--section">
-        <!-- <img class="icon" src="./images/trost-logo" alt="Trost Logo"> -->
         <h1>Trost Travel</h1>
       </article>
       <article tabindex="0" class="welcome--section">
         <h2 id="travelerGreeting">Welcome [traveler name]! Would you like to plan a trip today?</h2>
         <h3 id="tripCostThisYear">You've spent [trip cost] on trips this year!</h3>
+      </article>
+      <article>
+        <button type="button" class ="logout-button" id="logout" name="logout">SIGN-OUT</button>
       </article>
     </header>
     <section class="main--page hidden" id="mainPage">
