@@ -1,3 +1,5 @@
+ /* Element Selectors */
+ 
  body {
   background: rgb(109, 188, 215);
 }
@@ -39,6 +41,8 @@ button:hover {
   background-color: #D68C45;
   cursor: pointer;
 }
+
+ /* Class Selectors */
 
 .login-page {
   background-image: url("https://img.freepik.com/free-vector/famous-world-monuments-seamless-pattern_1284-52141.jpg?t=st=1655182172~exp=1655182772~hmac=dd8ee3edd3ab76f13f95c08691c8f57093577be6ab2fb2564af41c1dae717b04&w=740");
@@ -86,7 +90,6 @@ button:hover {
 }
 
 .trip-column {
-  /* min-width: 252px; */
   width: 252px;
   display: flex;
   flex-direction: column;
@@ -125,3 +128,7 @@ button:hover {
   display: none!important
 }
 
+#confirmBtn:disabled,
+#confirmBtn[disabled] {
+  background-color: grey;
+}
