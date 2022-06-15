@@ -7,7 +7,6 @@ const dayjs = require('dayjs');
 describe('TripRepo', () => {
   let tripRepo1;
   let tripRepo2;
-  let destinationRepo;
   beforeEach(() => {
     tripRepo1 = new TripRepo([trips[0], trips[1], trips[2]]);
     tripRepo2 = new TripRepo([trips[3], trips[4], trips[5]]);
@@ -213,6 +212,6 @@ describe('TripRepo', () => {
     expect(tripRepo1.calculateTripCost(2)).to.equal(5082);
     expect(tripRepo1.calculateTripCost(3)).to.equal(4279);
     expect(tripRepo2.calculateTripCost(4)).to.equal(3740);
-    
   });
+  
 });

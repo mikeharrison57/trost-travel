@@ -46,10 +46,10 @@
               </select>
             </label>
             <label tabindex="0" for="duration">HOW MANY DAYS?
-              <input tabindex="0" type="number" min="1" name="duration" required>
+              <input tabindex="0" type="number" min="1" name="duration" class="trip-input" required>
             </label>
             <label tabindex="0" for="traveler-number">HOW MANY TRAVELERS?
-              <input tabindex="0" type="number" min="1" name="traveler-number" required>
+              <input tabindex="0" type="number" min="1" name="traveler-number" class="trip-input" required>
             </label>
             <button tabindex="0" type="submit" id="estimateTripCost">ESTIMATE TRIP COST</button>
             <button tabindex="0" disabled type="submit" id="confirmBtn">CONFIRM TRIP </button>
@@ -59,25 +59,25 @@
           </article>
       </section>
       <section tabindex="0" class="alltrips--section"
-        <article tabindex="0" class="alltrips__heading">
-          <h2>All Trips</h2>
-        </article>
-        <article tabindex="0" class="trip-categories">
-          <h3>Pending Trips</h3>
-          <h3>Past Trips</h3>
-          <h3>Present Trips</h3>
-          <h3>Future Trips</h3>
-        </article>
-        <article tabindex="0"  class="trip--info">
-          <article tabindex="0" class="trip-column" id="pendingTripInfo"></article>
-          <article tabindex="0"  class="trip-column" id="pastTripInfo"></article>
-          <article tabindex="0" class="trip-column" id="presentTripInfo"></article>
-          <article tabindex="0" class="trip-column" id="futureTripInfo"></article>
-        </article>
+          <div tabindex="0" class="alltrips__heading">
+            <h2>All Trips</h2>
+          </div>
+        <section class="trip--columns">
+          <article tabindex="0" class="trip-categories">
+            <h3>Pending Trips</h3>
+            <h3>Past Trips</h3>
+            <h3>Present Trips</h3>
+            <h3>Future Trips</h3>
+          </article>
+          <article tabindex="0"  class="trip--info">
+            <article tabindex="0" class="trip-column" id="pendingTripInfo"></article>
+            <article tabindex="0"  class="trip-column" id="pastTripInfo"></article>
+            <article tabindex="0" class="trip-column" id="presentTripInfo"></article>
+            <article tabindex="0" class="trip-column" id="futureTripInfo"></article>
+          </article>
+        </section>
       </section>
     </section>
     <script src="bundle.js"></script>
   </body>
 </html>
-
-<!-- type='number' min='1' oninput="validity.valid||(value='');" -->
