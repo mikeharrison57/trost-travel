@@ -86,7 +86,8 @@ button:hover {
 }
 
 .trip-column {
-  width: 20%;
+  /* min-width: 252px; */
+  width: 252px;
   display: flex;
   flex-direction: column;
   align-items: center;
