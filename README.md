@@ -74,8 +74,8 @@ Some future features I’d like to add to this application are:
 
 ## Contributor LinkedIn and GitHub
 
-[Michael Harrison: LinkedIn](https://www.linkedin.com/in/michael-harrison-b476a498/) 
-[Michael Harrison: GitHub](https://github.com/mikeharrison57)   
+- [Michael Harrison: LinkedIn](https://www.linkedin.com/in/michael-harrison-b476a498/) 
+- [Michael Harrison: GitHub](https://github.com/mikeharrison57)   
 
 ## Project Specs
 
