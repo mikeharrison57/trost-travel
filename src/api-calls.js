@@ -4,6 +4,15 @@ const requestApiData = category => {
     .catch(err => console.log(err, `${category} API ERROR!`))
 };
 
+const fetchUser = id => {
+  return Promise.all([
+    fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+      .then(response => response.json())
+      .then(data => data)
+      .catch(error => console.log(`Travelers API error!`))
+  ]);
+};
+
 const postNewTrip = (newUserTrip) => {
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
@@ -23,4 +32,4 @@ const postNewTrip = (newUserTrip) => {
   .catch(err => {console.log(err)})
 } 
 
-export { requestApiData, postNewTrip };
+export { requestApiData, postNewTrip, fetchUser };

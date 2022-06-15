@@ -3,7 +3,7 @@
 
 // Imports
 import './css/styles.css';
-import { requestApiData, postNewTrip } from './api-calls.js';
+import { requestApiData, postNewTrip, fetchUser } from './api-calls.js';
 import { TripRepo } from '../src/TripRepo';
 import { TravelerRepo } from '../src/TravelerRepo';
 import { DestinationRepo } from '../src/DestinationRepo'
@@ -23,6 +23,13 @@ const tripEstimate = document.querySelector('#tripEstimate');
 const formInputs = document.querySelectorAll('input');
 const destinationSelect = document.querySelector('select');
 const estimateTripCostBtn = document.querySelector('#estimateTripCost');
+const loginPage = document.querySelector("#loginPage");
+const header = document.querySelector("#header");
+const mainPage = document.querySelector("#mainPage");
+// const loginForm = document.querySelector('#loginForm');
+const usernameInput = document.querySelector("#username");
+const passwordInput = document.querySelector("#password");
+const loginButton = document.querySelector(".login-button");
 
 // Class Instances
 let tripRepo, travelerRepo, destinationRepo, travelerTripRepo; 
@@ -30,6 +37,73 @@ let tripRepo, travelerRepo, destinationRepo, travelerTripRepo;
 // Global Variables
 let travelerData, destinationData, tripData, 
 travelerId, travelerTrips;
+
+const show = (element) => {
+  element.classList.remove("hidden");
+};
+
+const hide = (element) => {
+  element.classList.add("hidden");
+};
+
+// const captureUserInput = (event) => {
+//   let userId = parseInt(usernameInput.value.split('traveler')[1]);
+//   // renderPageData(userId)
+//   // if (event.target.name === "username") {
+//   //   let inputValue = event.target.value;
+//   //   let usernameValue = inputValue.split("traveler");
+//   //   travelerId = parseInt(usernameValue[1]);
+//   // }
+//   // return travelerId
+// };
+
+const validateUsername = username => {
+  const usernameWord = username.value.substring(0, 8);
+  const usernameID = username.value.substring(8);
+  if (username.value === "") {
+    alert("Username required");
+  } else if (
+    usernameWord === "traveler" &&
+    usernameID <= 50 &&
+    usernameID >= 1
+  ) {
+    return usernameID;
+  } else {
+    alert("Username not found!");
+  }
+};
+
+const validatePassword = password => {
+  if (password.value === "") {
+    alert("Password required");
+  } else if (password.value !== "travel") {
+    alert("Invalid password");
+  } else if (password.value === "travel") {
+    return true;
+  }
+};
+
+const loginToPage = (event) => {
+  event.preventDefault();
+  const userId = validateUsername(event.target.form[0]);
+  const userPassword = validatePassword(event.target.form[1]);
+  console.log(userId)
+  console.log(userPassword)
+  fetchUser(userId).then(data => {
+    travelerId = data[0].id;
+    pastTripDisplay.innerHTML = ''
+    presentTripDisplay.innerHTML = ''
+    pendingTripDisplay.innerHTML = ''
+    futureTripDisplay.innerHTML = ''
+    retrieveApiData(travelerId);
+    hide(loginPage);
+    show(header);
+    show(mainPage);
+  })
+}
+
+  // traveler
+
 
 
 const retrieveApiData = () => {
@@ -45,12 +119,13 @@ const instantiateClasses = (data) => {
   travelerData = data[1].travelers;
   destinationData = data[2].destinations;
   tripRepo = new TripRepo(tripData);
+  console.log(tripRepo)
   travelerRepo = new TravelerRepo(travelerData);
   destinationRepo = new DestinationRepo(destinationData);
   renderPageData()
 };
 
-const createPostObjects = form => {
+const createPostObjects = (form) => {
   return {
     id: parseInt(tripRepo.trips.length + 1),
     userID: parseInt(travelerId),
@@ -63,7 +138,7 @@ const createPostObjects = form => {
   }
 }
 
-const postTripData = event => {
+const postTripData = (event) => {
   event.preventDefault()
   let postObject = createPostObjects(event.target.form);
   console.log(postObject)
@@ -72,7 +147,7 @@ const postTripData = event => {
     presentTripDisplay.innerHTML = ''
     pendingTripDisplay.innerHTML = ''
     futureTripDisplay.innerHTML = ''
-    retrieveApiData(travelerId)
+    retrieveApiData(travelerId);
   })
 }
 
@@ -87,11 +162,9 @@ const renderPageData = () => {
   setUpDestinationSelect();
   displayEstimatedTripCost();
   displayPresentTrips();
-  console.log(createPresentTripObjects())
 };
 
 const welcomeTraveler = () => {
-  travelerId = 47
   travelerGreeting.innerHTML = `Welcome ${travelerRepo.returnTravelerFirstName(travelerId)}! Would you like to plan a trip today?`
 };
 
@@ -104,15 +177,12 @@ const estimateTripCost = () => {
 }
 
 const displayEstimatedTripCost = (event) => {
-  event.preventDefault()
-  // console.log(formInputs[1])
-  // if (formInputs[1].value != null && formInputs[2] != null) {
-    estimateTripCostBtn.removeAttribute('disabled');
-    alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()}.00 
-    Click CONFIRM TRIP to submit trip details.`)
-    tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}.00`;
+    // event.preventDefault();
+    // estimateTripCostBtn.removeAttribute('disabled');
+    // alert(`Thank you for your selections! Your estimated trip cost is ${estimateTripCost()} 
+    // Click CONFIRM TRIP to submit trip details.`)
+    tripEstimate.innerHTML = `This trip will cost $${estimateTripCost()}`;
     submitButton.removeAttribute('disabled');
-  // }
 }
 
 const sortTravelerTrips = () => {
@@ -243,7 +313,6 @@ const displayPastTrips = () => {
 };
 
 const displayPresentTrips = () => {
-  console.log(createPresentTripObjects())
   const presentTrips = createPresentTripObjects().forEach((trip) => {
     presentTripDisplay.innerHTML +=
     `<article class="trip-box">
@@ -308,6 +377,7 @@ const setUpDestinationSelect = () => {
 };
 
 // Event Listeners
-window.addEventListener('load', retrieveApiData("load"));
+// window.addEventListener('load', retrieveApiData("load"));
 submitButton.addEventListener('click', postTripData);
 estimateTripCostBtn.addEventListener('click', displayEstimatedTripCost);
+loginButton.addEventListener('click', loginToPage);
