@@ -40,6 +40,21 @@ button:hover {
   cursor: pointer;
 }
 
+.login-page {
+  background-image: url("https://img.freepik.com/free-vector/famous-world-monuments-seamless-pattern_1284-52141.jpg?t=st=1655182172~exp=1655182772~hmac=dd8ee3edd3ab76f13f95c08691c8f57093577be6ab2fb2564af41c1dae717b04&w=740");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  height: 40rem;
+  padding: 50px;
+  width: auto;
+  margin: 20px;
+  font-size: 15px;
+  opacity:75%;
+}
+
 .icon {
   width: 4rem;
 }
@@ -71,7 +86,8 @@ button:hover {
 }
 
 .trip-column {
-  width: 20%;
+  /* min-width: 252px; */
+  width: 252px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,3 +120,8 @@ button:hover {
   padding: 1rem;
   margin: 1rem;
 }
+
+.hidden {
+  display: none!important
+}
+
