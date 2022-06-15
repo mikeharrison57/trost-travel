@@ -1,101 +1,83 @@
-# Webpack Starter Kit
+# _Trost Travel_
 
-## Clone This Repo
+## Table of Contents
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+- [Table of Contents](#table-of-contents)
+- [Abstract](#abstract)
+- [Illustration](#illustration)          
+- [Technologies Used](#technologies-used)
+- [Context and Features](#context-and-features)
+- [Lessons Learned](#lessons-learned)         
+- [Future Features](#future-features)
+- [Application Set-Up](#application-set-up)           
+- [Contributor LinkedIn and GitHub](#contributor-linkedin-and-github)
+- [Project Specs](#project-specs)
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Abstract
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+- Trost is a German word meaning, “a feeling of freedom from worry or disappointment”. This feeling is what _Trost Travel_ aims to capture for our users. It would like to make the process of tracking old, current, pending, and future trips easy and seamless. It was designed to test my abilities to implement Object Oriented Programing into my application, send and receive data from an API, practice the code review process, and incorporate Test Driven Development into the functionality of a client side application. 
 
-## Setup
+## Illustrations
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+![Trost-travel-illustration](https://user-images.githubusercontent.com/95496577/173882768-7a59f45a-9d1f-4130-a3cb-2079761da326.gif)
 
-Then install the library dependencies. Run:
+## Technologies Used
 
-```bash
-npm install
-```
+- CSS
+- Days.js
+- HTML
+- Fetch API
+- JavaScript
+- Mocha & Chai
+- Webpack
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+## Context and Features
 
-## Where to Add Your Code
+- _Trost Travel_ is a travel tracking application. It allows a user to track all of their trips. The trips are categorized into 4 sections: pending, past, present, and upcoming. Upon page load, the user is greeted with a login page. After logging in with their specific username (specified by user ID), and their password (travel for all users) they are greeted by their first name. The top banner of the application also showcases the user’s money spent on trips that particular year. After the user has looked over their current trips on the user dashboard, they are ready to book a new trip.
 
-### JavaScript
+- The book trip form is right below the top banner of the page. The user is able to select the start date for the trip, the destination from a provided list of destinations, the amount of days for the trip, and the amount of travelers going on the trip. After making these selections, the user must press the estimated trip cost button. They must do this before being able to book the trip. After booking the trip, it will be sent to the travel agency (trip API) for approval. It will show up as a pending trip on the user dashboard, and it will also show up in the present or future sections depending on when the user booked the trip for. 
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-**Create all of your feature code files in the `src` directory.**
+## Lessons Learned
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+- This was the toughest application that I’ve ever had to develop in my short time as a software developer. Coming up with the initial class structure to accommodate and interact with the provided API server was extremely challenging. I initially worked on some individual object classes, but soon decided that based on the provided data a class repo structure would better accommodate said data. I designed and developed three repo classes: TravelerRepo, DestinationRepo, and TripRepo. These three repositories would be the foundation for how I would structure my entire application. I tested them on many different array related tests given that they would be holding all of the objects from their respective API’s. I also gave my trip repo methods for converting dates (leveraging `Days.js ` to do so), sorting all of the trips into past, present, pending, and upcoming categories, and for calculating trip costs. Lastly, my traveler and destination classes both had methods for finding travelers and destinations by their respective ids. This allowed me to locate and connect trips to travelers and destinations by said ids. 
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+- Another very challenging aspect of this application was connecting the GET and POST requests to the API’s and class instances. Thankfully, my repository classes connected very seamlessly with the data for the GET requests. However, in order to create my objects for my POST requests I did have to put a lot of thought and effort into designing this object, and making sure all of its values were compatible with the trip API. I did so by breaking down the properties of said object very conscientiously and carefully. I found this to be a very unique challenge, particularly the fact that so many of the values were numbers, but came through as strings from the respective data input boxes on the book trip form. The final challenge for me was restructuring my application to accommodate the use of the login page. This did require much alteration of how I was previously fetching data, but ultimately tied everything from the application together. 
 
-### HTML
+## Future Features
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+Some future features I’d like to add to this application are:
 
-### Images
+- Implementing admin access and travel agent interaction. 
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+- Allow the travel agent to POST suggestedActivities for user trips based off of a user’s “travelerType” value.
 
-## How to View Your Code in Action
+- Implement an animation using CSS and/or make your application responsive on smaller screen sizes.
 
-In the terminal, run:
+## Application Set-Up
 
-```bash
-npm start
-```
+1. Fork repository on GitHub.
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+2. `Git clone` the repository to your local machine.
 
-```bash
-Project is running at http://localhost:8080/
-```
+3. `Cd` into the directory.
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+4. Run `npm install` in your terminal to install project dependencies.
 
----
+5. Go to this [repository](https://github.com/turingschool-examples/travel-tracker-api)  
 
-## Test Files Organization
+6. Follow instructions in the travel-tracker-api repository from the previous step. 
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+7. Run `npm start` in the terminal to see the application. 
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+8. When finished with the application, be sure to type `Control + C` to stop running the travel-tracker-api and this application. 
 
-## Running Your Tests
+## Contributor LinkedIn and GitHub
 
-Run your test suite using the command:
+[Michael Harrison: LinkedIn](https://www.linkedin.com/in/michael-harrison-b476a498/) 
+[Michael Harrison: GitHub](https://github.com/mikeharrison57)   
 
-```bash
-npm test
-```
+## Project Specs
 
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-
-- TESTING LOCAL COMMITS
+- The specs for this application can be found 
+[here](https://frontend.turing.edu/projects/travel-tracker.html)  

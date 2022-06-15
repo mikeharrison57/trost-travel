@@ -90,7 +90,7 @@ button:hover {
 }
 
 .trip-column {
-  width: 252px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +100,7 @@ button:hover {
 
 .trip-categories {
   display: flex;
-  width: 63.5rem;
+  width: 66rem;
   background-color: #D68C45;
   justify-content: space-around;
 }

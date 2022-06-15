@@ -150,11 +150,11 @@ const renderPageData = () => {
   sumTripCostThisYear();
   displayTripCostThisYear();
   displayPastTrips();
+  displayPresentTrips();
   displayPendingTrips();
   displayUpcomingTrips();
   setUpDestinationSelect();
   displayEstimatedTripCost();
-  displayPresentTrips();
 };
 
 const clearInputs = () => {
@@ -330,7 +330,6 @@ const displayPastTrips = () => {
 };
 
 const displayPresentTrips = () => {
-  console.log(createPresentTripObjects())
   const presentTrips = createPresentTripObjects().forEach((trip) => {
     presentTripDisplay.innerHTML +=
     `<article class="trip-box">
@@ -368,7 +367,7 @@ const displayPendingTrips = () => {
 
 const displayUpcomingTrips = () => {
   const futureTrips = createFutureTripObjects().forEach((trip) => {
-    if(trip.status === 'approved') {
+    // if(trip.status === 'approved') {
       futureTripDisplay.innerHTML +=
       `<article class="trip-box">
       <div class="box-image">
@@ -381,7 +380,7 @@ const displayUpcomingTrips = () => {
         <h4>Status: ${trip.status}</h4>
       </div>
     </article>` 
-    }
+    // }
     })
   return futureTrips
 };
